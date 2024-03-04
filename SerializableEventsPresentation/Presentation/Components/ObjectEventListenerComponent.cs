@@ -1,9 +1,10 @@
 ﻿using SerializableEvents.Core.EventArgs;
 using System;
+using System.ComponentModel;
 
 namespace SerializableEvents.Components
 {
-
+    [ToolboxItem(true)]
     public class ObjectEventListenerComponent : EventListenerBase, IEventListenerComponent<object, ObjectEventArgs>
     {
         public event EventHandler<ObjectEventArgs> OnEventTriggered;
@@ -20,7 +21,7 @@ namespace SerializableEvents.Components
 
         public void Raise(object obj)
         {
-            ResourceName._eventListener.Raise(obj);
+            SerializableEvent.Raise(obj);
         }
     }
 }

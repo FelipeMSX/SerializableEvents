@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1DAA6E94-614C-4297-8121-027139CAD644}</ProjectGuid>
+    <ProjectGuid>{F3E21D9E-AAA6-4BBC-BE74-DFC447DAB7ED}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>SerializableEvents</RootNamespace>
-    <AssemblyName>SerializableEvents</AssemblyName>
+    <RootNamespace>Demo</RootNamespace>
+    <AssemblyName>Demo</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -35,6 +35,8 @@
     <Reference Include="DevComponents.DotNetBar2, Version=10.9.0.13, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -51,30 +53,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SecondForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SecondForm.Designer.cs">
-      <DependentUpon>SecondForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\SerializableEventResources.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SecondForm.resx">
-      <DependentUpon>SecondForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -97,7 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SerializableEventsPresentation\SerializableEvents.csproj">
-      <Project>{b581e8bd-05fa-43a4-b879-aba63cb8bda4}</Project>
+      <Project>{B581E8BD-05FA-43A4-B879-ABA63CB8BDA4}</Project>
       <Name>SerializableEvents</Name>
     </ProjectReference>
   </ItemGroup>

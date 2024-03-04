@@ -1,15 +1,12 @@
 ﻿using SerializableEvents.Components;
 using System;
 using System.CodeDom;
-using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
-namespace SerializableEventsPresentation
+namespace SerializableEvents.Presentation
 {
-    public class MyCodeDomSerializer : CodeDomSerializer
+    public class SerializableEventCodeDomSerializer : CodeDomSerializer
     {
         public override object Deserialize(IDesignerSerializationManager manager, object codeObject)
         {
@@ -41,6 +38,7 @@ namespace SerializableEventsPresentation
                 {
                     //var x = (CodeVariableDeclarationStatement)statements[0];
 
+                    //Ta feio, ver na API como que faz pra pegar o nome da variável corretamente.
                     var name = value.ToString().Split(' ')[0];
 
                     //CodeVariableReferenceExpression variableRef1 =

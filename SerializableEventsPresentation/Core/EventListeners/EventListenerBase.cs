@@ -12,16 +12,21 @@ namespace SerializableEvents.Core.EventListeners
         public string Name { get; set; }
 
         [NonSerialized]
-        private List<IObserver> _listeners = new List<IObserver>();
+        private List<IObserver> _listeners;
 
         public void Raise(TType item)
         {
-            IGenericEventArgs<TType> args = (TArgs)Activator.CreateInstance(typeof(TArgs), item);
+            ((IEventListener)this).Raise(item);
+        }
 
-            CheckBeforeUsage();
+        public void Register(IObserver<TArgs> listener)
+        {
+            ((IEventListener)this).Register(listener);
+        }
 
-            for (int i = _listeners.Count - 1; i >= 0; i--)
-                _listeners[i].OnEventRised(args);
+        public void Unregister(IObserver<TArgs> listener)
+        {
+            ((IEventListener)this).Unregister(listener);
         }
 
         void IEventListener.Raise(object item)
@@ -32,22 +37,6 @@ namespace SerializableEvents.Core.EventListeners
 
             for (int i = _listeners.Count - 1; i >= 0; i--)
                 _listeners[i].OnEventRised(args);
-        }
-
-        public void Register(IObserver<TArgs> listener)
-        {
-            CheckBeforeUsage();
-
-            if (!_listeners.Contains(listener))
-                _listeners.Add(listener);
-        }
-
-        public void Unregister(IObserver<TArgs> listener)
-        {
-            CheckBeforeUsage();
-
-            if (_listeners.Contains(listener))
-                _listeners.Remove(listener);
         }
 
         void IEventListener.Register(IObserver listener)

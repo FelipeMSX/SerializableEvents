@@ -1,5 +1,5 @@
 ﻿using SerializableEvents.Components;
-using SerializableEventsPresentation.Temp;
+using SerializableEvents.Model;
 using System;
 using System.ComponentModel;
 using System.Drawing.Design;
@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using WindowsFormsPubSub.ModalSelector;
 
-namespace WindowsFormsControlLibrary1.SerializablePubSub
+namespace SerializableEvents.Presentation
 {
     class ResourceDropDownListPropertyEditor : UITypeEditor
     {
@@ -41,7 +41,7 @@ namespace WindowsFormsControlLibrary1.SerializablePubSub
                 if (form.ShowDialog() == DialogResult.OK)
                 {
 
-                    EventComponent eventComponent = new EventComponent();
+                    SerializableEvent eventComponent = new SerializableEvent();
                     eventComponent.Guid = new Guid("7a080173-b1ca-4ea8-a975-55052a846bce");
                     eventComponent.Name = "String Event Name";
                     

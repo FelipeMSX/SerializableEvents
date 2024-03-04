@@ -23,6 +23,13 @@ namespace WindowsFormsPubSub.ModalSelector
         {
             _eventListenerBase = eventListenerBase;
             InitializeComponent();
+
+            //Primeira vez
+            if(_eventListenerBase != null)
+            {
+                panelHeader.Text = _eventListenerBase.EventType.Name;
+
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

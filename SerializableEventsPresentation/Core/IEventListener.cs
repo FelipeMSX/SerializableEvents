@@ -12,7 +12,7 @@ namespace SerializableEvents.Core
         void Unregister(IObserver listener);
     }
 
-    public interface IEventListener<TType> : IEventListener where TType : IGenericEventArgs
+    public interface IEventListener<out TType> : IEventListener where TType : IGenericEventArgs
     {
         void Register(IObserver<TType> listener);
         void Unregister(IObserver<TType> listener);

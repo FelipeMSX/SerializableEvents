@@ -7,13 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SerializableEvents
+namespace Demo
 {
-    public partial class MainForm : Form
+    public partial class Form1 : Form
     {
-        public MainForm()
+        public Form1()
         {
             InitializeComponent();
+        }
+
+        private void voidEventListenerComponent1_OnEventTriggered(object sender, SerializableEvents.Core.EventArgs.VoidEventArgs e)
+        {
+
         }
     }
 }

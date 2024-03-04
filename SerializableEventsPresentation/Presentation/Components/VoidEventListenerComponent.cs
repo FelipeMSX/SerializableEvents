@@ -1,9 +1,10 @@
 ﻿using SerializableEvents.Core.EventArgs;
 using System;
+using System.ComponentModel;
 
 namespace SerializableEvents.Components
 {
-
+    [ToolboxItem(true)]
     public class VoidEventListenerComponent : EventListenerBase, IEventListenerComponent<SerializableEvents.Core.Void, VoidEventArgs>
     {
         public event EventHandler<VoidEventArgs> OnEventTriggered;
@@ -20,7 +21,7 @@ namespace SerializableEvents.Components
 
         public void Raise()
         {
-            ResourceName._eventListener.Raise(SerializableEvents.Core.Void.Empty);
+            SerializableEvent.Raise(SerializableEvents.Core.Void.Empty);
         }
     }
 }

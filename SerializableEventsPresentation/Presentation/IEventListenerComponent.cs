@@ -1,7 +1,7 @@
 ﻿using SerializableEvents.Core.EventArgs;
 using System;
 
-namespace SerializableEvents.Components
+namespace SerializableEvents
 {
     public interface IEventListenerComponent<TType, TArgs>
         //where TEventHandler : EventListenerBase<TType>

@@ -1,6 +1,6 @@
-﻿namespace SerializableEvents
+﻿namespace Demo
 {
-    partial class MainForm
+    partial class Form1
     {
         /// <summary>
         /// Required designer variable.
@@ -28,19 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.stringEventListenerComponent1 = new SerializableEvents.Components.StringEventListenerComponent();
             this.SuspendLayout();
             // 
-            // MainForm
+            // stringEventListenerComponent1
+            // 
+            this.stringEventListenerComponent1.SerializableEvent = ((SerializableEvents.Model.SerializableEvent)(resources.GetObject("stringEventListenerComponent1.SerializableEvent")));
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.stringEventListenerComponent1.Unsubscribe);
+            this.Shown += new System.EventHandler(this.stringEventListenerComponent1.Subscribe);
+            // 
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Name = "Form1";
+            this.Text = "Form1";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private SerializableEvents.Components.StringEventListenerComponent stringEventListenerComponent1;
     }
 }
+

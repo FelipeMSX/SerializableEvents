@@ -2,56 +2,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Resources;
 using System.Windows.Forms;
 
-namespace SerializableEventsPresentation.Temp
+namespace SerializableEvents.Infra
 {
-    [Serializable]
-    public class EventComponent : IObserver
-    {
-        [ReadOnly(true)]
-        public Guid Guid { get; set; }
-
-        [ReadOnly(true)]
-        public string Name { get; set; }
-
-        public IEventListener _eventListener;
-
-        public event Action<IGenericEventArgs> OnEventTriggered;
-
-        //Handle exceptions
-        public void Initialize()
-        {
-            _eventListener = PersistenceManager.Instance.FindListender(Guid);
-        }
-
-        public void Subscribe()
-        {
-            _eventListener.Register(this);
-        }
-
-        public void Unsubscribe()
-        {
-            Debug.WriteLine("Unsubscribe event method");
-            _eventListener.Unregister(this);
-        }
-
-        public void OnEventRised(IGenericEventArgs item)
-        {
-            OnEventTriggered?.Invoke(item);
-        }
-
-        public override string ToString()
-        {
-            return Name;
-        }
-
-   
-    }
-
     public class PersistenceManager
     {
         private const string RESOURCE_PATH = "C:\\Users\\felip\\source\\repos\\SerializableEvents\\SerializableEvents\\Properties\\SerializableEventResources.resx";

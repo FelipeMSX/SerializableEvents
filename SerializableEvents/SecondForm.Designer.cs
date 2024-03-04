@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SecondForm));
             this.txtConsole = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.stringEventListenerComponent1 = new SerializableEvents.Components.StringEventListenerComponent();
             this.SuspendLayout();
             // 
             // txtConsole
@@ -48,15 +46,6 @@
             this.txtConsole.Size = new System.Drawing.Size(408, 55);
             this.txtConsole.TabIndex = 0;
             // 
-            // stringEventListenerComponent1
-            // 
-            this.stringEventListenerComponent1.Description = null;
-            this.stringEventListenerComponent1.EventName = null;
-            this.stringEventListenerComponent1.ResourceName = ((SerializableEventsPresentation.Temp.EventComponent)(resources.GetObject("stringEventListenerComponent1.ResourceName")));
-            this.stringEventListenerComponent1.OnEventTriggered += new System.EventHandler<SerializableEvents.Core.EventArgs.StringEventArgs>(this.stringEventListenerComponent1_OnEventTriggered);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.stringEventListenerComponent1.Unsubscribe);
-            this.Shown += new System.EventHandler(this.stringEventListenerComponent1.Subscribe);
-            // 
             // SecondForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -72,7 +61,6 @@
         #endregion
 
         private DevComponents.DotNetBar.Controls.TextBoxX txtConsole;
-        private Components.StringEventListenerComponent stringEventListenerComponent1;
     }
 }
 

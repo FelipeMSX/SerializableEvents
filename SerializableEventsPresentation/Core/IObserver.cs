@@ -5,8 +5,8 @@
         void OnEventRised(IGenericEventArgs item);
     }
 
-    public interface IObserver<in T> : IObserver where T : IGenericEventArgs
+    public interface IObserver<in TArgs> : IObserver where TArgs : IGenericEventArgs
     {
-        void OnEventRised(T item);
+        void OnEventRised(TArgs item);
     }
 }

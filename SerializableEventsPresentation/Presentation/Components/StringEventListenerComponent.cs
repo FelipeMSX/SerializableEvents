@@ -7,6 +7,7 @@ using System.Windows.Forms;
 
 namespace SerializableEvents.Components
 {
+    [ToolboxItem(true)]
     public partial class StringEventListenerComponent : EventListenerBase, IEventListenerComponent<string, StringEventArgs>
     {
         public event EventHandler<StringEventArgs> OnEventTriggered;
@@ -24,16 +25,7 @@ namespace SerializableEvents.Components
 
         public void Raise(string obj)
         {
-
-            if (this.GetService(typeof(IDesignerHost)) is IDesignerHost host)
-            {
-                IComponent componentHost = host.RootComponent;
-                if (componentHost is ContainerControl)
-                {
-                    var test = (componentHost as ContainerControl).FindForm();
-                }
-            }
-            ResourceName._eventListener.Raise(obj);
+            SerializableEvent.Raise(obj);
         }
     }
 }
