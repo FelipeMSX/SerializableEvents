@@ -1,9 +1,11 @@
-﻿using SerializableEvents.Components;
+﻿using DevComponents.DotNetBar;
+using SerializableEvents.Components;
 using SerializableEvents.Core;
-using SerializableEvents.Core.EventListeners;
+using SerializableEvents.Core.Listeners;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Resources;
 using System.Windows.Forms;
@@ -16,34 +18,63 @@ namespace WindowsFormsPubSub.ModalSelector
         private const string RESOURCE_PATH = "C:\\Users\\felip\\source\\repos\\SerializableEvents\\SerializableEvents\\Properties\\SerializableEventResources.resx";
 
         private Dictionary<string, IEventListener> _events = new Dictionary<string, IEventListener>();
-        private List<DislayEvent> _itens = new List<DislayEvent>();
 
         private EventListenerBase _eventListenerBase;
+
+
+        private IEventListener _selectedEventListener;
         public EventSelectorForm(EventListenerBase eventListenerBase)
         {
             _eventListenerBase = eventListenerBase;
             InitializeComponent();
 
-            //Primeira vez
-            if(_eventListenerBase != null)
-            {
-                panelHeader.Text = _eventListenerBase.EventType.Name;
 
+            panelHeader.Text = _eventListenerBase.EventType.Name;
+            LoadData();
+            //FindSelectedItem;
+            //Shows something if the selected event has been delete
+
+            if (_eventListenerBase.SerializableEvent != null)
+            {
+   
+                //_selectedEventListener = selectedListener;
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void LoadData()
         {
-            //Create(RESOURCE_PATH, "aquiii");
+ 
         }
+
+        //<br />43cefaf1-3378-488f-8976-0742556b018f<p><font color = "#84A2C6" size="8">Configurar envio de alerta(s) por e-mail</font></p>
+
 
         private IEventListener CreateEvent(Type type)
         {
             IEventListener eventType = (IEventListener)Activator.CreateInstance(type);
 
-            MessageBox.Show("Evento criado com sucesso" + eventType.Guid);
+            eventType.Name = DateTime.Now.ToString();
+            //MessageBox.Show("Evento criado com sucesso" + eventType.Guid);
+
+            _events.Add(eventType.Guid.ToString(), eventType);
+            CreateEventEntry(eventType);
 
             return eventType;
+        }
+
+        private void CreateEventEntry(IEventListener eventType)
+        {
+            ButtonItem buttonItem = new ButtonItem();
+            buttonItem.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            buttonItem.FixedSize = new System.Drawing.Size(300, 82);
+            buttonItem.Image = global::SerializableEvents.Properties.Resources.EventIcon_64;
+            buttonItem.ImageFixedSize = new System.Drawing.Size(48, 48);
+            buttonItem.Name = eventType.Guid.ToString();
+            buttonItem.Text = $"<br />{eventType.Guid}<p><font color=\"#84A2C6\" size=\"8\">{eventType.Name}</font></p>";
+            buttonItem.Command = commandSelectedItem;
+            buttonItem.CommandParameter = eventType;
+            itemPanelEvents.Items.Add(buttonItem);
+            itemPanelEvents.Refresh();
         }
 
         /// <summary>
@@ -105,7 +136,7 @@ namespace WindowsFormsPubSub.ModalSelector
                 {
                     var itemConverted = (IEventListener)item.Value;
 
-                    _itens.Add(new DislayEvent(itemConverted.Name, itemConverted.Guid));
+                    //_itens.Add(new DislayEvent(itemConverted.Name, itemConverted.Guid));
 
                 }
                 catch (Exception ex)
@@ -114,7 +145,7 @@ namespace WindowsFormsPubSub.ModalSelector
                     break;
                 }
             }
-            dataGridViewX1.DataSource = _itens;
+            //dataGridViewX1.DataSource = _itens;
 
         }
 
@@ -128,26 +159,6 @@ namespace WindowsFormsPubSub.ModalSelector
                 Name = name;
                 Guid = guid;
             }
-        }
-
-        private void itemPanel2_ItemClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelEx2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonX1_Click(object sender, EventArgs e)
-        {
-            ListResources();
-        }
-
-        private void command1_Executed(object sender, EventArgs e)
-        {
-
         }
 
         private void buttonX2_Click(object sender, EventArgs e)
@@ -174,7 +185,7 @@ namespace WindowsFormsPubSub.ModalSelector
 
                 // Instantiate an Automobile object.
 
-                StringEventListener stringEventListener = new StringEventListener() { Name = "String Event" };
+                StringListener stringEventListener = new StringListener() { Name = "String Event" };
                 //ObjectEventListener objectEventListener = new ObjectEventListener() { Name = "String Object" };
 
                 // Define a resource file named CarResources.resx.
@@ -190,7 +201,7 @@ namespace WindowsFormsPubSub.ModalSelector
                     //resx.AddResource("EarlyAuto1", car1);
                     //resx.AddResource("EarlyAuto2", car2);
                     resx.AddResource(stringEventListener.Guid.ToString(), stringEventListener);
-                    //resx.AddResource("EventObject", objectEventListener);
+
 
 
                 }
@@ -209,9 +220,60 @@ namespace WindowsFormsPubSub.ModalSelector
             this.DialogResult = DialogResult.OK;
         }
 
-        private void buttonX3_Click(object sender, EventArgs e)
+
+        private void btnCreateNew_Click(object sender, EventArgs e)
         {
             CreateEvent(_eventListenerBase.EventType);
+
+        }
+
+        private void commandSelectedItem_Executed(object sender, EventArgs e)
+        {
+            _selectedEventListener = null;
+            ICommandSource command = (ICommandSource)sender;
+            IEventListener selectedListener = (IEventListener)command.CommandParameter;
+
+            foreach (ButtonItem item in itemPanelEvents.Items)
+            {
+                if ((item).Name == selectedListener.Guid.ToString())
+                {
+                    item.Checked = true;
+                }
+                else
+                {
+                    item.Checked = false;
+                }
+
+            }
+
+            _selectedEventListener = selectedListener;
+
+        }
+
+        private void panelEx1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public IEventListener ObterEventListener()
+        {
+            return _selectedEventListener;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (_selectedEventListener == null)
+            {
+                MessageBox.Show("É obrigatório escolher um item para poder salvar", "Definir item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            this.DialogResult = DialogResult.OK;
+        }
+
+        private void btnInitialize_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

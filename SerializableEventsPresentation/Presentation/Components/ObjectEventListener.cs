@@ -5,18 +5,18 @@ using System.ComponentModel;
 namespace SerializableEvents.Components
 {
     [ToolboxItem(true)]
-    public class ObjectEventListenerComponent : EventListenerBase, IEventListenerComponent<object, ObjectEventArgs>
+    public class ObjectEventListener : EventListenerBase, IEventListenerComponent<object, ObjectEventArgs>
     {
         public event EventHandler<ObjectEventArgs> OnEventTriggered;
 
-        public ObjectEventListenerComponent()
+        public ObjectEventListener()
         {
             _redirect = (obj) =>
             {
                 OnEventTriggered?.Invoke(this,(ObjectEventArgs)obj);
             };
 
-            EventType = typeof(SerializableEvents.Core.EventListeners.ObjectEventListener);
+            EventType = typeof(SerializableEvents.Core.Listeners.ObjectListener);
         }
 
         public void Raise(object obj)

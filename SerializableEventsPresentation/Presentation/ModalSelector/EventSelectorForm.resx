@@ -117,7 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolStripEvents.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="commandSelectedItem.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABMLAAATCwAAAAAAAAAA
+        AAAoKCj/KCgo+ygoKAD///8A////AIKCguF+fn4n////AP///wD///8A////AP///wD///8AKCgoAigo
+        KP8oKCj/KCgo/icnJwD///8A////AP///wCDg4NsgoKC7319fR7///8A////AP///wD///8A////AP//
+        /wD///8AKCgo/icnJwAnJycA////AP///wD///8Ag4ODD4ODg+6BgYHmfX19Gv///wD///8A////AP//
+        /wD///8A////AP///wAnJycEJycnAP///wD///8A////AIGBgQKCgoKbg4OD/4CAgMt9fX0S////AP//
+        /wD///8A////AP///wD///8AJycnB8zMzAb///8A////AP///wD///8AgoKCP4KCgvqCgoL/gICA2X19
+        fQb///8A////AP///wD///8A////AP///wCGhoYo////AP///wD///8A////AP///wCDg4PLg4OD/4GB
+        gf9/f3/UfX19GP///wD///8A////AP///wD///8FysrKPIKCglmCgoJXgICAV39/f1eAgIBKgYGBnYKC
+        gv+BgYH/f39//39/f9p9fX0O////AP///wD///8ApKSkAYGBgSCCgoLpgoKC/4GBgf+AgID/gICA/39/
+        f/9/f3//f39//4CAgP+AgID/gICA2319fRX///8A////AP///wH///8AgYGBkoKCgv+BgYH/gICA/4CA
+        gP+AgID/gICA/4CAgP+AgID/gICA/4CAgP+AgIDsfX19NP///wD///8A////AIKCgg+Dg4P/goKC/4CA
+        gP+AgID/gICA/4CAgMp/f3+Hf39/mX9/f5h/f3+Yf39/tH9/f27///8A////AP///wD///8AgYGBqoKC
+        gv+BgYH/gICA/4CAgP9/f3/QfX19Ef///wD///8A////AP///wB+fn4B////AP///wD///8AKCgoAIOD
+        gzCCgoL/goKC/4CAgP+AgID/gICA/39/f8b///8A////AP///wD///8A////AP///wD///8C////ACgo
+        KACCgoIKgoKCxYKCgv+BgYH/gICA/4CAgP+AgID/f39/j////wD///8A////AP///wAoKCgA1NTUFP//
+        /wAoKCgA////AIKCgmuCgoL/goKC/4CAgP+AgID/gICA/4CAgPl+fn5U////AP///wAoKCgAKCgoACgo
+        KP8oKCgbKCgoAP///wCBgYEEgoKC+oKCgv+AgID/gICA/4CAgP+AgID/gICA/35+fjX///8AKCgoACgo
+        KP4oKCj/KCgo/igoKAD///8A////AIKCgmuCgoKjgYGBnoCAgJ6AgICegICAnoCAgLSAgIB6////ACgo
+        KP4oKCj/OfgAAHj+AAD4fwAAeD8AADwfAAC+DwAAAAcAAAADAABAAQAAwAEAAOA9AADgPwAAYB8AAHAP
+        AAAwBgAAOAQAAA==
+</value>
+  </data>
 </root>

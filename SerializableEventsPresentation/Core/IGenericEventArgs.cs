@@ -9,8 +9,8 @@ namespace SerializableEvents.Core
         DateTime CreatedAt { get; }
     }
 
-    public interface IGenericEventArgs<T> : IGenericEventArgs
+    public interface IGenericEventArgs<TType> : IGenericEventArgs
     {
-        new T Data { get; }
+        new TType Data { get; }
     }
 }

@@ -67,14 +67,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\EventArgs\DataRowEventArgs.cs" />
+    <Compile Include="Core\EventArgs\DataTableEventArgs.cs" />
+    <Compile Include="Core\Listeners\DataRowListener.cs" />
+    <Compile Include="Core\Listeners\DataTableListener.cs" />
+    <Compile Include="Presentation\Components\DataRowEventListener.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Presentation\Components\DataTableEventListener.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Presentation\IEventListenerComponent.cs" />
-    <Compile Include="Presentation\Components\VoidEventListenerComponent.cs">
+    <Compile Include="Presentation\Components\VoidEventListener.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Presentation\Components\ObjectEventListenerComponent.cs">
+    <Compile Include="Presentation\Components\ObjectEventListener.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Presentation\Components\StringEventListenerComponent.cs">
+    <Compile Include="Presentation\Components\StringEventListener.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Presentation\Components\EventListenerBase.cs">
@@ -84,10 +94,10 @@
     <Compile Include="Core\EventArgs\ObjectEventArgs.cs" />
     <Compile Include="Core\EventArgs\StringEventArgs.cs" />
     <Compile Include="Core\EventArgs\VoidEventArgs.cs" />
-    <Compile Include="Core\EventListeners\EventListenerBase.cs" />
-    <Compile Include="Core\EventListeners\ObjectEventListener.cs" />
-    <Compile Include="Core\EventListeners\StringEventListener.cs" />
-    <Compile Include="Core\EventListeners\VoidEventListener.cs" />
+    <Compile Include="Core\Listeners\EventListenerBase.cs" />
+    <Compile Include="Core\Listeners\ObjectListener.cs" />
+    <Compile Include="Core\Listeners\StringListener.cs" />
+    <Compile Include="Core\Listeners\VoidListener.cs" />
     <Compile Include="Core\IEventListener.cs" />
     <Compile Include="Core\IGenericEventArgs.cs" />
     <Compile Include="Core\IObserver.cs" />
@@ -107,7 +117,7 @@
       <DependentUpon>EventSelectorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -126,6 +136,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

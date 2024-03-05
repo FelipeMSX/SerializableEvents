@@ -4,12 +4,15 @@ using SerializableEvents.Presentation;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.Design.Serialization;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SerializableEvents.Components
 {
     [ToolboxItem(false)]
     [DesignerSerializer(typeof(SerializableEventCodeDomSerializer), typeof(CodeDomSerializer))]
+    [ToolboxBitmapAttribute(typeof(EventListenerBase), "EventSystemIcon_16")]
+
     public partial class EventListenerBase : Component
     {
         [Description("Descreva o que esse evento faz, essa informação é somente para documentação.")]
@@ -36,7 +39,6 @@ namespace SerializableEvents.Components
 
         public void Subscribe(object sender, EventArgs e)
         {
-            MessageBox.Show("inscrito");
             SerializableEvent.Initialize();
             SerializableEvent.Subscribe();
             SerializableEvent.OnEventTriggered += ResourceName_OnEventTriggered;
@@ -44,7 +46,6 @@ namespace SerializableEvents.Components
 
         public void Unsubscribe(object sender, FormClosedEventArgs e)
         {
-            MessageBox.Show("removed");
             SerializableEvent.Unsubscribe();
             SerializableEvent.OnEventTriggered -= ResourceName_OnEventTriggered;
         }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SerializableEvents.Core.EventListeners
+namespace SerializableEvents.Core.Listeners
 {
     [Serializable]
     public abstract class EventListenerBase<TType, TArgs> :

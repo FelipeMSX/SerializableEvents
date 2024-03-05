@@ -1,25 +1,22 @@
-﻿using SerializableEvents.Core;
-using SerializableEvents.Core.EventArgs;
+﻿using SerializableEvents.Core.EventArgs;
 using System;
-using System.ComponentModel.Design;
 using System.ComponentModel;
-using System.Windows.Forms;
 
 namespace SerializableEvents.Components
 {
     [ToolboxItem(true)]
-    public partial class StringEventListenerComponent : EventListenerBase, IEventListenerComponent<string, StringEventArgs>
+    public partial class StringEventListener : EventListenerBase, IEventListenerComponent<string, StringEventArgs>
     {
         public event EventHandler<StringEventArgs> OnEventTriggered;
 
-        public StringEventListenerComponent()
+        public StringEventListener()
         {
             _redirect = (obj) =>
             {
                 OnEventTriggered?.Invoke(this, (StringEventArgs)obj);
             };
 
-            EventType = typeof(SerializableEvents.Core.EventListeners.StringEventListener);
+            EventType = typeof(SerializableEvents.Core.Listeners.StringListener);
         }
 
 

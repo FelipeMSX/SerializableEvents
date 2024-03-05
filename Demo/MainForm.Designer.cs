@@ -1,6 +1,6 @@
 ﻿namespace Demo
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.stringEventListenerComponent1 = new SerializableEvents.Components.StringEventListenerComponent();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.stringEventListener1 = new SerializableEvents.Components.StringEventListener();
             this.SuspendLayout();
             // 
-            // stringEventListenerComponent1
+            // stringEventListener1
             // 
-            this.stringEventListenerComponent1.SerializableEvent = ((SerializableEvents.Model.SerializableEvent)(resources.GetObject("stringEventListenerComponent1.SerializableEvent")));
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.stringEventListenerComponent1.Unsubscribe);
-            this.Shown += new System.EventHandler(this.stringEventListenerComponent1.Subscribe);
+            this.stringEventListener1.SerializableEvent = ((SerializableEvents.Model.SerializableEvent)(resources.GetObject("stringEventListener1.SerializableEvent")));
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.stringEventListener1.Unsubscribe);
+            this.Shown += new System.EventHandler(this.stringEventListener1.Subscribe);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
 
@@ -51,7 +51,7 @@
 
         #endregion
 
-        private SerializableEvents.Components.StringEventListenerComponent stringEventListenerComponent1;
+        private SerializableEvents.Components.StringEventListener stringEventListener1;
     }
 }
 
