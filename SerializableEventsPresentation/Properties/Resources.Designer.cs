@@ -22,8 +22,7 @@ namespace SerializableEvents.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources
-    {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -37,7 +36,7 @@ namespace SerializableEvents.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SerializableEvents.Properties.Resources", typeof(Resources).Assembly);
@@ -52,7 +51,7 @@ namespace SerializableEvents.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -64,7 +63,7 @@ namespace SerializableEvents.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap EventIcon_64 {
+        internal static System.Drawing.Bitmap EventIcon_64 {
             get {
                 object obj = ResourceManager.GetObject("EventIcon_64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -74,7 +73,7 @@ namespace SerializableEvents.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        public static System.Drawing.Icon EventSystemIcon_16 {
+        internal static System.Drawing.Icon EventSystemIcon_16 {
             get {
                 object obj = ResourceManager.GetObject("EventSystemIcon_16", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
@@ -84,10 +83,19 @@ namespace SerializableEvents.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap EventSystemIcon_161 {
+        internal static System.Drawing.Bitmap EventSystemIcon_161 {
             get {
                 object obj = ResourceManager.GetObject("EventSystemIcon_161", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C:\\Users\\felip\\source\\repos\\SerializableEvents\\SerializableEvents\\Properties\\SerializableEventResources.resx.
+        /// </summary>
+        internal static string RESOURCE_PATH {
+            get {
+                return ResourceManager.GetString("RESOURCE_PATH", resourceCulture);
             }
         }
     }

@@ -71,6 +71,9 @@
     <Compile Include="Core\EventArgs\DataTableEventArgs.cs" />
     <Compile Include="Core\Listeners\DataRowListener.cs" />
     <Compile Include="Core\Listeners\DataTableListener.cs" />
+    <Compile Include="Infra\IPersistence.cs" />
+    <Compile Include="Infra\ISerializableEventService.cs" />
+    <Compile Include="Infra\SerializableEventService.cs" />
     <Compile Include="Presentation\Components\DataRowEventListener.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -102,6 +105,18 @@
     <Compile Include="Core\IGenericEventArgs.cs" />
     <Compile Include="Core\IObserver.cs" />
     <Compile Include="Core\Void.cs" />
+    <Compile Include="Presentation\IPresenter.cs" />
+    <Compile Include="Presentation\IModel.cs" />
+    <Compile Include="Presentation\IView.cs" />
+    <Compile Include="Presentation\Model\EventEntry.cs" />
+    <Compile Include="Presentation\ModalSelector\EventSelectorPresenter.cs" />
+    <Compile Include="Presentation\ModalSelector\IEventSelectorView.cs" />
+    <Compile Include="Presentation\ModalSelector\InputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\ModalSelector\InputForm.Designer.cs">
+      <DependentUpon>InputForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\SerializableEventCodeDomSerializer.cs" />
     <Compile Include="Presentation\ModalSelector\EventSelectorForm.cs">
       <SubType>Form</SubType>
@@ -116,8 +131,11 @@
     <EmbeddedResource Include="Presentation\ModalSelector\EventSelectorForm.resx">
       <DependentUpon>EventSelectorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\ModalSelector\InputForm.resx">
+      <DependentUpon>InputForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>

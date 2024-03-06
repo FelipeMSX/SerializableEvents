@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EventSelectorForm));
             this.panelHeader = new DevComponents.DotNetBar.PanelEx();
             this.btnReplicarBaseRH = new DevComponents.DotNetBar.ButtonItem();
@@ -45,6 +46,7 @@
             this.labelItem1 = new DevComponents.DotNetBar.LabelItem();
             this.buttonItem3 = new DevComponents.DotNetBar.ButtonItem();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
+            this.btnInitialize = new DevComponents.DotNetBar.ButtonX();
             this.btnCreateNew = new DevComponents.DotNetBar.ButtonX();
             this.btnSave = new DevComponents.DotNetBar.ButtonX();
             this.buttonItem1 = new DevComponents.DotNetBar.ButtonItem();
@@ -70,15 +72,20 @@
             this.buttonItem25 = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem26 = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem27 = new DevComponents.DotNetBar.ButtonItem();
-            this.btnInitialize = new DevComponents.DotNetBar.ButtonX();
+            this.lblEventNameType = new DevComponents.DotNetBar.LabelX();
+            this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.panelHeader.SuspendLayout();
             this.panelEvents.SuspendLayout();
+            this.itemPanelEvents.SuspendLayout();
             this.panelEx1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelHeader
             // 
             this.panelHeader.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelHeader.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelHeader.Controls.Add(this.lblEventNameType);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
@@ -169,6 +176,7 @@
             this.itemPanelEvents.BackgroundStyle.Class = "ItemPanel";
             this.itemPanelEvents.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.itemPanelEvents.ContainerControlProcessDialogKey = true;
+            this.itemPanelEvents.Controls.Add(this.dataGridViewX1);
             this.itemPanelEvents.Dock = System.Windows.Forms.DockStyle.Fill;
             this.itemPanelEvents.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.itemPanelEvents.ItemSpacing = 10;
@@ -221,6 +229,19 @@
             this.panelEx1.StyleMouseOver.ForeColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.panelEx1.TabIndex = 3;
             this.panelEx1.Click += new System.EventHandler(this.panelEx1_Click);
+            // 
+            // btnInitialize
+            // 
+            this.btnInitialize.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnInitialize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInitialize.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnInitialize.Location = new System.Drawing.Point(651, 23);
+            this.btnInitialize.Name = "btnInitialize";
+            this.btnInitialize.Size = new System.Drawing.Size(75, 23);
+            this.btnInitialize.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnInitialize.TabIndex = 2;
+            this.btnInitialize.Text = "Iniciar";
+            this.btnInitialize.Click += new System.EventHandler(this.btnInitialize_Click);
             // 
             // btnCreateNew
             // 
@@ -379,18 +400,34 @@
             this.buttonItem27.Name = "buttonItem27";
             this.buttonItem27.Text = "buttonItem19";
             // 
-            // btnInitialize
+            // lblEventNameType
             // 
-            this.btnInitialize.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnInitialize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInitialize.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnInitialize.Location = new System.Drawing.Point(651, 23);
-            this.btnInitialize.Name = "btnInitialize";
-            this.btnInitialize.Size = new System.Drawing.Size(75, 23);
-            this.btnInitialize.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnInitialize.TabIndex = 2;
-            this.btnInitialize.Text = "Iniciar";
-            this.btnInitialize.Click += new System.EventHandler(this.btnInitialize_Click);
+            // 
+            // 
+            // 
+            this.lblEventNameType.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblEventNameType.Location = new System.Drawing.Point(218, 22);
+            this.lblEventNameType.Name = "lblEventNameType";
+            this.lblEventNameType.Size = new System.Drawing.Size(302, 23);
+            this.lblEventNameType.TabIndex = 0;
+            this.lblEventNameType.Text = "[EVENT_TYPE_NAME]";
+            // 
+            // dataGridViewX1
+            // 
+            this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dataGridViewX1.Location = new System.Drawing.Point(245, 100);
+            this.dataGridViewX1.Name = "dataGridViewX1";
+            this.dataGridViewX1.Size = new System.Drawing.Size(585, 287);
+            this.dataGridViewX1.TabIndex = 0;
             // 
             // EventSelectorForm
             // 
@@ -404,8 +441,11 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EventSelectorForm";
             this.Text = "Serializable Event System";
+            this.panelHeader.ResumeLayout(false);
             this.panelEvents.ResumeLayout(false);
+            this.itemPanelEvents.ResumeLayout(false);
             this.panelEx1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -453,5 +493,7 @@
         private DevComponents.DotNetBar.ButtonItem buttonItem26;
         private DevComponents.DotNetBar.ButtonItem buttonItem27;
         private DevComponents.DotNetBar.ButtonX btnInitialize;
+        private DevComponents.DotNetBar.LabelX lblEventNameType;
+        private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewX1;
     }
 }

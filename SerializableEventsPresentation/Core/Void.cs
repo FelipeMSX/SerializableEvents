@@ -1,6 +1,6 @@
 ﻿namespace SerializableEvents.Core
 {
-    public struct Void 
+    public struct Void
     {
         public static Void Empty = new Void();
     }

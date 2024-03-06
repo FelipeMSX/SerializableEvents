@@ -18,10 +18,12 @@ namespace SerializableEvents.Model
         public event Action<IGenericEventArgs> OnEventTriggered;
 
         private IEventListener _eventListener;
+
+        private ISerializableEventService _service = new SerializableEventService();
         //Handle exceptions
         public void Initialize()
         {
-            _eventListener = PersistenceManager.Instance.FindListender(Guid);
+            _eventListener = _service.FindListender(Guid);
         }
 
         public void Subscribe()
@@ -31,7 +33,6 @@ namespace SerializableEvents.Model
 
         public void Unsubscribe()
         {
-            Debug.WriteLine("Unsubscribe event method");
             _eventListener.Unregister(this);
         }
 

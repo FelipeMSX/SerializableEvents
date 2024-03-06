@@ -7,15 +7,11 @@ using System.Windows.Forms;
 
 namespace SerializableEvents.Infra
 {
-    public class PersistenceManager
+    public class PersistenceManager : IPersistence
     {
-        private const string RESOURCE_PATH = "C:\\Users\\felip\\source\\repos\\SerializableEvents\\SerializableEvents\\Properties\\SerializableEventResources.resx";
-
         protected PersistenceManager() { }
 
         private static PersistenceManager _instance;
-
-        private static Dictionary<Guid, IEventListener> _eventListeners;
 
         public static PersistenceManager Instance
         {
@@ -24,31 +20,47 @@ namespace SerializableEvents.Infra
                 if (_instance == null)
                 {
                     _instance = new PersistenceManager();
-
-                    ResXResourceReader rsxr = new ResXResourceReader(RESOURCE_PATH);
-                    _eventListeners = new Dictionary<Guid, IEventListener>();
-                    //Find all persisteds events
-                    foreach (DictionaryEntry entry in rsxr)
-                    {
-                        try
-                        {
-                            _eventListeners.Add(new Guid(entry.Key.ToString()), (IEventListener)entry.Value);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.ToString());
-                            break;
-                        }
-                    }
                 }
                 return _instance;
             }
             set { _instance = value; }
         }
 
-        public IEventListener FindListender(Guid guid)
+        public void Save(Dictionary<Guid, IEventListener> eventlisteners    )
         {
-            return _eventListeners[guid];
+            using (ResXResourceWriter resourceWriter = new ResXResourceWriter(Properties.Resources.RESOURCE_PATH))
+            {
+                foreach (var item in eventlisteners)
+                {
+                    resourceWriter.AddResource(item.Key.ToString(), item.Value);
+                }
+                resourceWriter.Generate();
+            }
+        }
+
+        public Dictionary<Guid, IEventListener> LoadData()
+        {
+            Dictionary<Guid, IEventListener> eventListeners = new Dictionary<Guid, IEventListener>();
+
+            using (ResXResourceReader rsxr = new ResXResourceReader(Properties.Resources.RESOURCE_PATH))
+            {
+                eventListeners = new Dictionary<Guid, IEventListener>();
+                //Find all serialized events
+                foreach (DictionaryEntry entry in rsxr)
+                {
+                    try
+                    {
+                        eventListeners.Add(new Guid(entry.Key.ToString()), (IEventListener)entry.Value);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                        break;
+                    }
+                }
+            }
+
+            return eventListeners;
         }
     }
 }
