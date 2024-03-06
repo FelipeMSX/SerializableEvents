@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Resources;
 using System.Windows.Forms;
 
@@ -26,9 +27,9 @@ namespace SerializableEvents.Infra
             set { _instance = value; }
         }
 
-        public void Save(Dictionary<Guid, IEventListener> eventlisteners    )
+        public void Save(Dictionary<Guid, IEventListener> eventlisteners)
         {
-            using (ResXResourceWriter resourceWriter = new ResXResourceWriter(Properties.Resources.RESOURCE_PATH))
+            using (ResXResourceWriter resourceWriter = new ResXResourceWriter(Properties.Resources.FileName))
             {
                 foreach (var item in eventlisteners)
                 {
@@ -40,9 +41,12 @@ namespace SerializableEvents.Infra
 
         public Dictionary<Guid, IEventListener> LoadData()
         {
+            ForceCreateFile();
+
+            MessageBox.Show(AppDomain.CurrentDomain.BaseDirectory);
             Dictionary<Guid, IEventListener> eventListeners = new Dictionary<Guid, IEventListener>();
 
-            using (ResXResourceReader rsxr = new ResXResourceReader(Properties.Resources.RESOURCE_PATH))
+            using (ResXResourceReader rsxr = new ResXResourceReader(Properties.Resources.FileName))
             {
                 eventListeners = new Dictionary<Guid, IEventListener>();
                 //Find all serialized events
@@ -59,8 +63,17 @@ namespace SerializableEvents.Infra
                     }
                 }
             }
-
             return eventListeners;
+        }
+
+        private void ForceCreateFile()
+        {
+            if (!File.Exists(Properties.Resources.FileName))
+            {
+                using (ResXResourceWriter resourceWriter = new ResXResourceWriter(Properties.Resources.FileName))
+                {
+                }
+            }
         }
     }
 }
