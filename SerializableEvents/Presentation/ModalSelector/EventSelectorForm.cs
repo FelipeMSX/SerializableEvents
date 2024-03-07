@@ -45,12 +45,14 @@ namespace WindowsFormsPubSub.ModalSelector
             //    //_selectedEventListener = selectedListener;
             //}
             AssociateAndRaiseViewEvents();
+
+            //itemPanelEvents.DataBindings.Add("Name",)
         }
 
         private void AssociateAndRaiseViewEvents()
         {
-            btnCreateNew.Click += (e, s) => { AddNewEvent?.Invoke(this, EventArgs.Empty); };
-            btnSave.Click += (e, s) => { SaveEvent?.Invoke(this, EventArgs.Empty); };
+            //btnCreateNew.Click += (e, s) => { AddNewEvent?.Invoke(this, EventArgs.Empty); };
+            //btnSave.Click += (e, s) => { SaveEvent?.Invoke(this, EventArgs.Empty); };
 
         }
 
@@ -58,6 +60,15 @@ namespace WindowsFormsPubSub.ModalSelector
         {
             itemPanelEvents.DataSource = bindingSource;
             dataGridViewX1.DataSource = bindingSource;
+            bindingSource.CurrentChanged += (s, e) =>
+            {
+                //MessageBox.Show("CurrentChanged Aqui");
+            };
+
+            bindingSource.CurrentItemChanged += (s, e) =>
+            {
+                //MessageBox.Show("CurrentItemChanged Aqui");
+            };
         }
 
         private void LoadData()
@@ -129,7 +140,7 @@ namespace WindowsFormsPubSub.ModalSelector
 
         private void btnCreateNew_Click(object sender, EventArgs e)
         {
-            //CreateEvent(_eventListenerBase.EventType);
+            AddNewEvent?.Invoke(this, EventArgs.Empty);
 
         }
 
@@ -168,13 +179,7 @@ namespace WindowsFormsPubSub.ModalSelector
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (_selectedEventListener == null)
-            {
-                MessageBox.Show("É obrigatório escolher um item para poder salvar", "Definir item", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            this.DialogResult = DialogResult.OK;
+            SaveEvent?.Invoke(this, EventArgs.Empty);
         }
 
         private void btnInitialize_Click(object sender, EventArgs e)
@@ -182,6 +187,36 @@ namespace WindowsFormsPubSub.ModalSelector
 
         }
 
+        private void itemPanelEvents_BindingContextChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("hahaha");
+        }
 
+        private void itemPanelEvents_BackColorChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void itemPanelEvents_DataSourceChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void itemPanelEvents_ItemAdded(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonX1_Click(object sender, EventArgs e)
+        {
+            var test = (BindingSource)itemPanelEvents.DataSource;
+
+            MessageBox.Show(((EventEntry)test.Current).Name);
+        }
+
+        private void buttonX2_Click(object sender, EventArgs e)
+        {
+            var test = (BindingSource)itemPanelEvents.DataSource;
+            test.ResetCurrentItem();
+        }
     }
 }

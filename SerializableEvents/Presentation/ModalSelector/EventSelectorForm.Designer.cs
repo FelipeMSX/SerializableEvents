@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EventSelectorForm));
             this.panelHeader = new DevComponents.DotNetBar.PanelEx();
+            this.lblEventNameType = new DevComponents.DotNetBar.LabelX();
             this.btnReplicarBaseRH = new DevComponents.DotNetBar.ButtonItem();
             this.btnReplicarPlanoDeCargosRH = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem10 = new DevComponents.DotNetBar.ButtonItem();
@@ -43,6 +44,7 @@
             this.btnCancelamentoFacilita = new DevComponents.DotNetBar.ButtonItem();
             this.panelEvents = new System.Windows.Forms.Panel();
             this.itemPanelEvents = new DevComponents.DotNetBar.ItemPanel();
+            this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.labelItem1 = new DevComponents.DotNetBar.LabelItem();
             this.buttonItem3 = new DevComponents.DotNetBar.ButtonItem();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
@@ -72,13 +74,15 @@
             this.buttonItem25 = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem26 = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem27 = new DevComponents.DotNetBar.ButtonItem();
-            this.lblEventNameType = new DevComponents.DotNetBar.LabelX();
-            this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.buttonItem2 = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItem14 = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+            this.buttonX2 = new DevComponents.DotNetBar.ButtonX();
             this.panelHeader.SuspendLayout();
             this.panelEvents.SuspendLayout();
             this.itemPanelEvents.SuspendLayout();
-            this.panelEx1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
+            this.panelEx1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelHeader
@@ -107,6 +111,18 @@
             this.panelHeader.StyleMouseOver.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(189)))), ((int)(((byte)(105)))));
             this.panelHeader.StyleMouseOver.ForeColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.panelHeader.TabIndex = 1;
+            // 
+            // lblEventNameType
+            // 
+            // 
+            // 
+            // 
+            this.lblEventNameType.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblEventNameType.Location = new System.Drawing.Point(12, 22);
+            this.lblEventNameType.Name = "lblEventNameType";
+            this.lblEventNameType.Size = new System.Drawing.Size(302, 23);
+            this.lblEventNameType.TabIndex = 0;
+            this.lblEventNameType.Text = "[EVENT_TYPE_NAME]";
             // 
             // btnReplicarBaseRH
             // 
@@ -179,13 +195,37 @@
             this.itemPanelEvents.Controls.Add(this.dataGridViewX1);
             this.itemPanelEvents.Dock = System.Windows.Forms.DockStyle.Fill;
             this.itemPanelEvents.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.itemPanelEvents.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.buttonItem14});
             this.itemPanelEvents.ItemSpacing = 10;
+            this.itemPanelEvents.ItemTemplate = this.buttonItem2;
+            this.itemPanelEvents.ItemTemplateBindings.Add(new DevComponents.DotNetBar.BindingDef("Text", "Name"));
             this.itemPanelEvents.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
             this.itemPanelEvents.Location = new System.Drawing.Point(0, 0);
             this.itemPanelEvents.MultiLine = true;
             this.itemPanelEvents.Name = "itemPanelEvents";
             this.itemPanelEvents.Size = new System.Drawing.Size(954, 457);
             this.itemPanelEvents.TabIndex = 1;
+            this.itemPanelEvents.DataSourceChanged += new System.EventHandler(this.itemPanelEvents_DataSourceChanged);
+            this.itemPanelEvents.ItemAdded += new System.EventHandler(this.itemPanelEvents_ItemAdded);
+            this.itemPanelEvents.BackColorChanged += new System.EventHandler(this.itemPanelEvents_BackColorChanged);
+            // 
+            // dataGridViewX1
+            // 
+            this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dataGridViewX1.Location = new System.Drawing.Point(553, 210);
+            this.dataGridViewX1.Name = "dataGridViewX1";
+            this.dataGridViewX1.Size = new System.Drawing.Size(291, 228);
+            this.dataGridViewX1.TabIndex = 0;
             // 
             // labelItem1
             // 
@@ -204,6 +244,8 @@
             // 
             this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx1.Controls.Add(this.buttonX2);
+            this.panelEx1.Controls.Add(this.buttonX1);
             this.panelEx1.Controls.Add(this.btnInitialize);
             this.panelEx1.Controls.Add(this.btnCreateNew);
             this.panelEx1.Controls.Add(this.btnSave);
@@ -235,7 +277,7 @@
             this.btnInitialize.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnInitialize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInitialize.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnInitialize.Location = new System.Drawing.Point(651, 23);
+            this.btnInitialize.Location = new System.Drawing.Point(688, 23);
             this.btnInitialize.Name = "btnInitialize";
             this.btnInitialize.Size = new System.Drawing.Size(75, 23);
             this.btnInitialize.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -400,34 +442,48 @@
             this.buttonItem27.Name = "buttonItem27";
             this.buttonItem27.Text = "buttonItem19";
             // 
-            // lblEventNameType
+            // buttonItem2
             // 
+            this.buttonItem2.AutoCheckOnClick = true;
+            this.buttonItem2.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItem2.Image = global::SerializableEvents.Properties.Resources.EventIcon_64;
+            this.buttonItem2.Name = "buttonItem2";
             // 
+            // buttonItem14
             // 
+            this.buttonItem14.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItem14.Description = "asdfasdfasdfasdfasdfsdfef";
+            this.buttonItem14.Image = global::SerializableEvents.Properties.Resources.EventIcon_64;
+            this.buttonItem14.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.buttonItem14.ImageSmall = global::SerializableEvents.Properties.Resources.EventIcon_64;
+            this.buttonItem14.Name = "buttonItem14";
+            this.buttonItem14.Text = "buttonItem14";
             // 
-            this.lblEventNameType.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblEventNameType.Location = new System.Drawing.Point(218, 22);
-            this.lblEventNameType.Name = "lblEventNameType";
-            this.lblEventNameType.Size = new System.Drawing.Size(302, 23);
-            this.lblEventNameType.TabIndex = 0;
-            this.lblEventNameType.Text = "[EVENT_TYPE_NAME]";
+            // buttonX1
             // 
-            // dataGridViewX1
+            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX1.Location = new System.Drawing.Point(588, 23);
+            this.buttonX1.Name = "buttonX1";
+            this.buttonX1.Size = new System.Drawing.Size(94, 23);
+            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX1.TabIndex = 3;
+            this.buttonX1.Text = "Show Current";
+            this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
             // 
-            this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dataGridViewX1.Location = new System.Drawing.Point(245, 100);
-            this.dataGridViewX1.Name = "dataGridViewX1";
-            this.dataGridViewX1.Size = new System.Drawing.Size(585, 287);
-            this.dataGridViewX1.TabIndex = 0;
+            // buttonX2
+            // 
+            this.buttonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX2.Location = new System.Drawing.Point(488, 23);
+            this.buttonX2.Name = "buttonX2";
+            this.buttonX2.Size = new System.Drawing.Size(94, 23);
+            this.buttonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX2.TabIndex = 4;
+            this.buttonX2.Text = "Reset";
+            this.buttonX2.Click += new System.EventHandler(this.buttonX2_Click);
             // 
             // EventSelectorForm
             // 
@@ -444,8 +500,8 @@
             this.panelHeader.ResumeLayout(false);
             this.panelEvents.ResumeLayout(false);
             this.itemPanelEvents.ResumeLayout(false);
-            this.panelEx1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
+            this.panelEx1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -495,5 +551,9 @@
         private DevComponents.DotNetBar.ButtonX btnInitialize;
         private DevComponents.DotNetBar.LabelX lblEventNameType;
         private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewX1;
+        private DevComponents.DotNetBar.ButtonItem buttonItem2;
+        private DevComponents.DotNetBar.ButtonItem buttonItem14;
+        private DevComponents.DotNetBar.ButtonX buttonX1;
+        private DevComponents.DotNetBar.ButtonX buttonX2;
     }
 }
