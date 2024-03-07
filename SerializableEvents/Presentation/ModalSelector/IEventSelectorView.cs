@@ -1,13 +1,16 @@
 ﻿using System;
-using System.Windows.Forms;
 
-namespace SerializableEvents.Presentation.ModalSelector
+namespace SerializableEvents.Presentation.Model
 {
     internal interface IEventSelectorView : IView
     {
         string EventName { get; set; }
 
-        void SetSerializableEventBindingSource(BindingSource bindingSource);
+        EventEntry SelectedEventyEntry { get; }
+
+        void SetSerializableEventDataSource(object bindingSource);
+        void SetSelectedEventyEntryByIndex(int index);
+
 
         event EventHandler AddNewEvent;
         event EventHandler RemoveEvent;

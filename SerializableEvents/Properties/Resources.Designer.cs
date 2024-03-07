@@ -91,7 +91,7 @@ namespace SerializableEvents.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ..\SerializableEventResources.resx.
+        ///   Looks up a localized string similar to C:\Workspace\erp-contabilis\Contabilis\Contabilis\Properties\SerializableEventResources.resx.
         /// </summary>
         internal static string FileName {
             get {

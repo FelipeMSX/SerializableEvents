@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace SerializableEvents.Presentation.ModalSelector
+namespace SerializableEvents.Presentation.Model
 {
     public readonly struct EventEntry
     {

@@ -32,7 +32,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EventSelectorForm));
             this.panelHeader = new DevComponents.DotNetBar.PanelEx();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.eventEntryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblEventNameType = new DevComponents.DotNetBar.LabelX();
+            this.comboBoxEx1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnReplicarBaseRH = new DevComponents.DotNetBar.ButtonItem();
             this.btnReplicarPlanoDeCargosRH = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem10 = new DevComponents.DotNetBar.ButtonItem();
@@ -43,16 +48,22 @@
             this.btnRetornoFacilita = new DevComponents.DotNetBar.ButtonItem();
             this.btnCancelamentoFacilita = new DevComponents.DotNetBar.ButtonItem();
             this.panelEvents = new System.Windows.Forms.Panel();
-            this.itemPanelEvents = new DevComponents.DotNetBar.ItemPanel();
             this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.guidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemPanelEvents = new DevComponents.DotNetBar.ItemPanel();
+            this.buttonItem14 = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonItem2 = new DevComponents.DotNetBar.ButtonItem();
             this.labelItem1 = new DevComponents.DotNetBar.LabelItem();
             this.buttonItem3 = new DevComponents.DotNetBar.ButtonItem();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
+            this.btnOK = new DevComponents.DotNetBar.ButtonX();
+            this.buttonX2 = new DevComponents.DotNetBar.ButtonX();
+            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.btnInitialize = new DevComponents.DotNetBar.ButtonX();
             this.btnCreateNew = new DevComponents.DotNetBar.ButtonX();
             this.btnSave = new DevComponents.DotNetBar.ButtonX();
             this.buttonItem1 = new DevComponents.DotNetBar.ButtonItem();
-            this.commandSelectedItem = new DevComponents.DotNetBar.Command(this.components);
             this.buttonItem22 = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem23 = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem16 = new DevComponents.DotNetBar.ButtonItem();
@@ -74,13 +85,10 @@
             this.buttonItem25 = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem26 = new DevComponents.DotNetBar.ButtonItem();
             this.buttonItem27 = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItem2 = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItem14 = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
-            this.buttonX2 = new DevComponents.DotNetBar.ButtonX();
+            this.node1 = new DevComponents.AdvTree.Node();
             this.panelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.eventEntryBindingSource)).BeginInit();
             this.panelEvents.SuspendLayout();
-            this.itemPanelEvents.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.panelEx1.SuspendLayout();
             this.SuspendLayout();
@@ -89,28 +97,48 @@
             // 
             this.panelHeader.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelHeader.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelHeader.Controls.Add(this.panel1);
+            this.panelHeader.Controls.Add(this.labelX1);
             this.panelHeader.Controls.Add(this.lblEventNameType);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(956, 69);
-            this.panelHeader.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(249)))), ((int)(((byte)(252)))));
-            this.panelHeader.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(247)))));
-            this.panelHeader.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelHeader.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.SplitterBackground;
-            this.panelHeader.Style.BorderSide = DevComponents.DotNetBar.eBorderSide.Bottom;
-            this.panelHeader.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.panelHeader.Size = new System.Drawing.Size(956, 98);
+            this.panelHeader.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.panelHeader.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.panelHeader.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.panelHeader.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
             this.panelHeader.Style.GradientAngle = 90;
-            this.panelHeader.StyleMouseDown.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(151)))), ((int)(((byte)(61)))));
-            this.panelHeader.StyleMouseDown.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(184)))), ((int)(((byte)(94)))));
-            this.panelHeader.StyleMouseDown.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(140)))), ((int)(((byte)(60)))));
-            this.panelHeader.StyleMouseDown.ForeColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.panelHeader.StyleMouseOver.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(245)))), ((int)(((byte)(204)))));
-            this.panelHeader.StyleMouseOver.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
-            this.panelHeader.StyleMouseOver.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(189)))), ((int)(((byte)(105)))));
-            this.panelHeader.StyleMouseOver.ForeColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.panelHeader.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::SerializableEvents.Properties.Resources.EventIcon_64;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel1.Location = new System.Drawing.Point(12, 18);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(71, 66);
+            this.panel1.TabIndex = 4;
+            // 
+            // labelX1
+            // 
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.DockSiteBackColor2;
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventEntryBindingSource, "Guid", true));
+            this.labelX1.ForeColor = System.Drawing.Color.Gray;
+            this.labelX1.Location = new System.Drawing.Point(102, 47);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(572, 23);
+            this.labelX1.TabIndex = 3;
+            this.labelX1.Text = "[EVENT_TYPE_NAME]";
+            // 
+            // eventEntryBindingSource
+            // 
+            this.eventEntryBindingSource.DataSource = typeof(SerializableEvents.Presentation.Model.EventEntry);
             // 
             // lblEventNameType
             // 
@@ -118,11 +146,35 @@
             // 
             // 
             this.lblEventNameType.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblEventNameType.Location = new System.Drawing.Point(12, 22);
+            this.lblEventNameType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventEntryBindingSource, "Name", true));
+            this.lblEventNameType.Location = new System.Drawing.Point(102, 18);
             this.lblEventNameType.Name = "lblEventNameType";
-            this.lblEventNameType.Size = new System.Drawing.Size(302, 23);
+            this.lblEventNameType.Size = new System.Drawing.Size(583, 23);
             this.lblEventNameType.TabIndex = 0;
-            this.lblEventNameType.Text = "[EVENT_TYPE_NAME]";
+            this.lblEventNameType.Text = "[EVENT_TYPE_ID]";
+            // 
+            // comboBoxEx1
+            // 
+            this.comboBoxEx1.DataSource = this.eventEntryBindingSource;
+            this.comboBoxEx1.DisplayMember = "Guid";
+            this.comboBoxEx1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.comboBoxEx1.FormattingEnabled = true;
+            this.comboBoxEx1.ItemHeight = 21;
+            this.comboBoxEx1.Location = new System.Drawing.Point(646, 91);
+            this.comboBoxEx1.Name = "comboBoxEx1";
+            this.comboBoxEx1.Size = new System.Drawing.Size(121, 27);
+            this.comboBoxEx1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.comboBoxEx1.TabIndex = 2;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DataSource = this.eventEntryBindingSource;
+            this.comboBox1.DisplayMember = "Name";
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(773, 91);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 1;
             // 
             // btnReplicarBaseRH
             // 
@@ -174,11 +226,55 @@
             this.panelEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelEvents.Controls.Add(this.dataGridViewX1);
             this.panelEvents.Controls.Add(this.itemPanelEvents);
-            this.panelEvents.Location = new System.Drawing.Point(0, 75);
+            this.panelEvents.Controls.Add(this.comboBoxEx1);
+            this.panelEvents.Controls.Add(this.comboBox1);
+            this.panelEvents.Location = new System.Drawing.Point(0, 104);
             this.panelEvents.Name = "panelEvents";
-            this.panelEvents.Size = new System.Drawing.Size(954, 457);
+            this.panelEvents.Size = new System.Drawing.Size(954, 428);
             this.panelEvents.TabIndex = 2;
+            // 
+            // dataGridViewX1
+            // 
+            this.dataGridViewX1.AllowUserToAddRows = false;
+            this.dataGridViewX1.AllowUserToDeleteRows = false;
+            this.dataGridViewX1.AutoGenerateColumns = false;
+            this.dataGridViewX1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewX1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.guidDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn});
+            this.dataGridViewX1.DataSource = this.eventEntryBindingSource;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dataGridViewX1.Location = new System.Drawing.Point(329, 14);
+            this.dataGridViewX1.Name = "dataGridViewX1";
+            this.dataGridViewX1.ReadOnly = true;
+            this.dataGridViewX1.Size = new System.Drawing.Size(252, 376);
+            this.dataGridViewX1.TabIndex = 0;
+            // 
+            // guidDataGridViewTextBoxColumn
+            // 
+            this.guidDataGridViewTextBoxColumn.DataPropertyName = "Guid";
+            this.guidDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.guidDataGridViewTextBoxColumn.Name = "guidDataGridViewTextBoxColumn";
+            this.guidDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Nome";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // itemPanelEvents
             // 
@@ -192,8 +288,7 @@
             this.itemPanelEvents.BackgroundStyle.Class = "ItemPanel";
             this.itemPanelEvents.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.itemPanelEvents.ContainerControlProcessDialogKey = true;
-            this.itemPanelEvents.Controls.Add(this.dataGridViewX1);
-            this.itemPanelEvents.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.itemPanelEvents.DataSource = this.eventEntryBindingSource;
             this.itemPanelEvents.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.itemPanelEvents.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.buttonItem14});
@@ -201,31 +296,32 @@
             this.itemPanelEvents.ItemTemplate = this.buttonItem2;
             this.itemPanelEvents.ItemTemplateBindings.Add(new DevComponents.DotNetBar.BindingDef("Text", "Name"));
             this.itemPanelEvents.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.itemPanelEvents.Location = new System.Drawing.Point(0, 0);
+            this.itemPanelEvents.Location = new System.Drawing.Point(37, 14);
             this.itemPanelEvents.MultiLine = true;
             this.itemPanelEvents.Name = "itemPanelEvents";
-            this.itemPanelEvents.Size = new System.Drawing.Size(954, 457);
+            this.itemPanelEvents.Size = new System.Drawing.Size(286, 376);
             this.itemPanelEvents.TabIndex = 1;
             this.itemPanelEvents.DataSourceChanged += new System.EventHandler(this.itemPanelEvents_DataSourceChanged);
             this.itemPanelEvents.ItemAdded += new System.EventHandler(this.itemPanelEvents_ItemAdded);
             this.itemPanelEvents.BackColorChanged += new System.EventHandler(this.itemPanelEvents_BackColorChanged);
             // 
-            // dataGridViewX1
+            // buttonItem14
             // 
-            this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dataGridViewX1.Location = new System.Drawing.Point(553, 210);
-            this.dataGridViewX1.Name = "dataGridViewX1";
-            this.dataGridViewX1.Size = new System.Drawing.Size(291, 228);
-            this.dataGridViewX1.TabIndex = 0;
+            this.buttonItem14.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItem14.Description = "asdfasdfasdfasdfasdfsdfef";
+            this.buttonItem14.Image = global::SerializableEvents.Properties.Resources.EventIcon_64;
+            this.buttonItem14.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
+            this.buttonItem14.ImageSmall = global::SerializableEvents.Properties.Resources.EventIcon_64;
+            this.buttonItem14.Name = "buttonItem14";
+            this.buttonItem14.Text = "buttonItem14";
+            // 
+            // buttonItem2
+            // 
+            this.buttonItem2.AutoCheckOnClick = true;
+            this.buttonItem2.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+            this.buttonItem2.GlobalItem = false;
+            this.buttonItem2.Image = global::SerializableEvents.Properties.Resources.EventIcon_64;
+            this.buttonItem2.Name = "buttonItem2";
             // 
             // labelItem1
             // 
@@ -244,6 +340,7 @@
             // 
             this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
             this.panelEx1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.panelEx1.Controls.Add(this.btnOK);
             this.panelEx1.Controls.Add(this.buttonX2);
             this.panelEx1.Controls.Add(this.buttonX1);
             this.panelEx1.Controls.Add(this.btnInitialize);
@@ -254,30 +351,59 @@
             this.panelEx1.Location = new System.Drawing.Point(0, 538);
             this.panelEx1.Name = "panelEx1";
             this.panelEx1.Size = new System.Drawing.Size(956, 72);
-            this.panelEx1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(249)))), ((int)(((byte)(252)))));
-            this.panelEx1.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(217)))), ((int)(((byte)(247)))));
-            this.panelEx1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.panelEx1.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.SplitterBackground;
-            this.panelEx1.Style.BorderSide = DevComponents.DotNetBar.eBorderSide.Bottom;
-            this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.panelEx1.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
             this.panelEx1.Style.GradientAngle = 90;
-            this.panelEx1.StyleMouseDown.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(151)))), ((int)(((byte)(61)))));
-            this.panelEx1.StyleMouseDown.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(184)))), ((int)(((byte)(94)))));
-            this.panelEx1.StyleMouseDown.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(140)))), ((int)(((byte)(60)))));
-            this.panelEx1.StyleMouseDown.ForeColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.panelEx1.StyleMouseOver.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(245)))), ((int)(((byte)(204)))));
-            this.panelEx1.StyleMouseOver.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
-            this.panelEx1.StyleMouseOver.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(189)))), ((int)(((byte)(105)))));
-            this.panelEx1.StyleMouseOver.ForeColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.panelEx1.TabIndex = 3;
             this.panelEx1.Click += new System.EventHandler(this.panelEx1_Click);
+            // 
+            // btnOK
+            // 
+            this.btnOK.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOK.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnOK.Location = new System.Drawing.Point(620, 23);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnOK.TabIndex = 5;
+            this.btnOK.Text = "OK";
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // buttonX2
+            // 
+            this.buttonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX2.Location = new System.Drawing.Point(354, 23);
+            this.buttonX2.Name = "buttonX2";
+            this.buttonX2.Size = new System.Drawing.Size(94, 23);
+            this.buttonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX2.TabIndex = 4;
+            this.buttonX2.Text = "Reset";
+            this.buttonX2.Click += new System.EventHandler(this.buttonX2_Click);
+            // 
+            // buttonX1
+            // 
+            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.buttonX1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.buttonX1.Location = new System.Drawing.Point(454, 23);
+            this.buttonX1.Name = "buttonX1";
+            this.buttonX1.Size = new System.Drawing.Size(94, 23);
+            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.buttonX1.TabIndex = 3;
+            this.buttonX1.Text = "Show Current";
+            this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
             // 
             // btnInitialize
             // 
             this.btnInitialize.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnInitialize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInitialize.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnInitialize.Location = new System.Drawing.Point(688, 23);
+            this.btnInitialize.Location = new System.Drawing.Point(701, 23);
             this.btnInitialize.Name = "btnInitialize";
             this.btnInitialize.Size = new System.Drawing.Size(75, 23);
             this.btnInitialize.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -290,7 +416,7 @@
             this.btnCreateNew.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnCreateNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCreateNew.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnCreateNew.Location = new System.Drawing.Point(769, 23);
+            this.btnCreateNew.Location = new System.Drawing.Point(782, 23);
             this.btnCreateNew.Name = "btnCreateNew";
             this.btnCreateNew.Size = new System.Drawing.Size(75, 23);
             this.btnCreateNew.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -315,11 +441,6 @@
             // 
             this.buttonItem1.GlobalItem = false;
             this.buttonItem1.Name = "buttonItem1";
-            // 
-            // commandSelectedItem
-            // 
-            this.commandSelectedItem.Name = "commandSelectedItem";
-            this.commandSelectedItem.Executed += new System.EventHandler(this.commandSelectedItem_Executed);
             // 
             // buttonItem22
             // 
@@ -442,48 +563,11 @@
             this.buttonItem27.Name = "buttonItem27";
             this.buttonItem27.Text = "buttonItem19";
             // 
-            // buttonItem2
+            // node1
             // 
-            this.buttonItem2.AutoCheckOnClick = true;
-            this.buttonItem2.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItem2.Image = global::SerializableEvents.Properties.Resources.EventIcon_64;
-            this.buttonItem2.Name = "buttonItem2";
-            // 
-            // buttonItem14
-            // 
-            this.buttonItem14.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            this.buttonItem14.Description = "asdfasdfasdfasdfasdfsdfef";
-            this.buttonItem14.Image = global::SerializableEvents.Properties.Resources.EventIcon_64;
-            this.buttonItem14.ImageListSizeSelection = DevComponents.DotNetBar.eButtonImageListSelection.Large;
-            this.buttonItem14.ImageSmall = global::SerializableEvents.Properties.Resources.EventIcon_64;
-            this.buttonItem14.Name = "buttonItem14";
-            this.buttonItem14.Text = "buttonItem14";
-            // 
-            // buttonX1
-            // 
-            this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX1.Location = new System.Drawing.Point(588, 23);
-            this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Size = new System.Drawing.Size(94, 23);
-            this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX1.TabIndex = 3;
-            this.buttonX1.Text = "Show Current";
-            this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
-            // 
-            // buttonX2
-            // 
-            this.buttonX2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.buttonX2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonX2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.buttonX2.Location = new System.Drawing.Point(488, 23);
-            this.buttonX2.Name = "buttonX2";
-            this.buttonX2.Size = new System.Drawing.Size(94, 23);
-            this.buttonX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.buttonX2.TabIndex = 4;
-            this.buttonX2.Text = "Reset";
-            this.buttonX2.Click += new System.EventHandler(this.buttonX2_Click);
+            this.node1.Expanded = true;
+            this.node1.Name = "node1";
+            this.node1.Text = "node1";
             // 
             // EventSelectorForm
             // 
@@ -498,8 +582,8 @@
             this.Name = "EventSelectorForm";
             this.Text = "Serializable Event System";
             this.panelHeader.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.eventEntryBindingSource)).EndInit();
             this.panelEvents.ResumeLayout(false);
-            this.itemPanelEvents.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
             this.panelEx1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -525,7 +609,6 @@
         private DevComponents.DotNetBar.ButtonX btnSave;
         private DevComponents.DotNetBar.ButtonX btnCreateNew;
         private DevComponents.DotNetBar.ButtonItem buttonItem1;
-        private DevComponents.DotNetBar.Command commandSelectedItem;
         private DevComponents.DotNetBar.ButtonItem buttonItem22;
         private DevComponents.DotNetBar.ButtonItem buttonItem23;
         private DevComponents.DotNetBar.ItemPanel itemPanelEvents;
@@ -550,10 +633,19 @@
         private DevComponents.DotNetBar.ButtonItem buttonItem27;
         private DevComponents.DotNetBar.ButtonX btnInitialize;
         private DevComponents.DotNetBar.LabelX lblEventNameType;
-        private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewX1;
         private DevComponents.DotNetBar.ButtonItem buttonItem2;
         private DevComponents.DotNetBar.ButtonItem buttonItem14;
         private DevComponents.DotNetBar.ButtonX buttonX1;
         private DevComponents.DotNetBar.ButtonX buttonX2;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx comboBoxEx1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewX1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn guidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource eventEntryBindingSource;
+        private DevComponents.AdvTree.Node node1;
+        private DevComponents.DotNetBar.ButtonX btnOK;
+        private DevComponents.DotNetBar.LabelX labelX1;
+        private System.Windows.Forms.Panel panel1;
     }
 }

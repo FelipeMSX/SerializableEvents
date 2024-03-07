@@ -1,22 +1,20 @@
 ﻿using DevComponents.DotNetBar;
 using SerializableEvents.Components;
 using SerializableEvents.Core;
-using SerializableEvents.Core.Listeners;
-using SerializableEvents.Presentation.ModalSelector;
+using SerializableEvents.Presentation.Model;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Resources;
 using System.Windows.Forms;
-
+using System.Linq;
 namespace WindowsFormsPubSub.ModalSelector
 {
     public partial class EventSelectorForm : DevComponents.DotNetBar.Office2007Form, IEventSelectorView
     {
 
         public string EventName { get => lblEventNameType.Text; set => lblEventNameType.Text = value; }
-
+        public EventEntry SelectedEventyEntry
+        {
+            get => (EventEntry)eventEntryBindingSource.Current;
+        }
 
         private IEventListener _selectedEventListener;
 
@@ -56,19 +54,46 @@ namespace WindowsFormsPubSub.ModalSelector
 
         }
 
-        public void SetSerializableEventBindingSource(BindingSource bindingSource)
+        public void SetSerializableEventDataSource(object dataSource)
         {
-            itemPanelEvents.DataSource = bindingSource;
-            dataGridViewX1.DataSource = bindingSource;
-            bindingSource.CurrentChanged += (s, e) =>
-            {
-                //MessageBox.Show("CurrentChanged Aqui");
-            };
+            //DataTable DTable = new DataTable();
+            //DTable.Columns.Add("Guid", typeof(Guid));
+            //DTable.Columns.Add("Name", typeof(string));
+            eventEntryBindingSource.DataSource = dataSource;
+            eventEntryBindingSource.ResetBindings(false);
+            var test = eventEntryBindingSource.DataSource;
+            //var Entry1 = new EventEntry(Guid.NewGuid(), "AAAAAAAAAAAAAAAAA");
+            //var Entry2 = new EventEntry(Guid.NewGuid(), "BBBBBBBBBBBBBBBBB");
+            //var Entry3 = new EventEntry(Guid.NewGuid(), "CCCCCCCCCCCCCCCCC");
 
-            bindingSource.CurrentItemChanged += (s, e) =>
-            {
-                //MessageBox.Show("CurrentItemChanged Aqui");
-            };
+            //DTable.Rows.Add(new object[] { Guid.NewGuid(), "CCCCCCCCCCCCCCCCC" });
+            //DTable.Rows.Add(new object[] { Guid.NewGuid(), "AAAAAAAAAAAAAAAAA" });
+            //DTable.Rows.Add(new object[] { Guid.NewGuid(), "BBBBBBBBBBBBBBBBB" });
+
+
+            //eventEntryBindingSource.Add(new EventEntry(Guid.NewGuid(), "AAAAAAAAAAAAAAAAA"));
+            //eventEntryBindingSource.Add(new EventEntry(Guid.NewGuid(), "BBBBBBBBBBBBBBBBB"));
+            //eventEntryBindingSource.Add(new EventEntry(Guid.NewGuid(), "CCCCCCCCCCCCCCCCC"));
+
+            //itemPanelEvents.DataSource = bindingSource;
+            //dataGridViewX1.DataSource = bindingSource;
+            //comboBox1.DataSource =bindingSource;
+            //comboBoxEx1.DataSource = bindingSource;
+            //comboBoxEx1.DisplayMember = "Name";
+            //comboBox1.DisplayMember = "Name";
+
+
+            //comboBoxEx1.DataBindings.Add("DisplayMember", bindingSource.DataSource, "Name");
+            //comboBoxEx1.DataBindings.ad
+            //bindingSource.CurrentChanged += (s, e) =>
+            //{
+            //    //MessageBox.Show("CurrentChanged Aqui");
+            //};
+
+            //bindingSource.CurrentItemChanged += (s, e) =>
+            //{
+            //    //MessageBox.Show("CurrentItemChanged Aqui");
+            //};
         }
 
         private void LoadData()
@@ -90,20 +115,20 @@ namespace WindowsFormsPubSub.ModalSelector
             //CreateEventEntry(eventType);
         }
 
-        private void CreateEventEntry(IEventListener eventType)
-        {
-            ButtonItem buttonItem = new ButtonItem();
-            buttonItem.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
-            buttonItem.FixedSize = new System.Drawing.Size(300, 82);
-            buttonItem.Image = global::SerializableEvents.Properties.Resources.EventIcon_64;
-            buttonItem.ImageFixedSize = new System.Drawing.Size(48, 48);
-            buttonItem.Name = eventType.Guid.ToString();
-            buttonItem.Text = $"<br />{eventType.Guid}<p><font color=\"#84A2C6\" size=\"8\">{eventType.Name}</font></p>";
-            buttonItem.Command = commandSelectedItem;
-            buttonItem.CommandParameter = eventType;
-            itemPanelEvents.Items.Add(buttonItem);
-            itemPanelEvents.Refresh();
-        }
+        //private void CreateEventEntry(IEventListener eventType)
+        //{
+        //    ButtonItem buttonItem = new ButtonItem();
+        //    buttonItem.ButtonStyle = DevComponents.DotNetBar.eButtonStyle.ImageAndText;
+        //    buttonItem.FixedSize = new System.Drawing.Size(300, 82);
+        //    buttonItem.Image = global::SerializableEvents.Properties.Resources.EventIcon_64;
+        //    buttonItem.ImageFixedSize = new System.Drawing.Size(48, 48);
+        //    buttonItem.Name = eventType.Guid.ToString();
+        //    buttonItem.Text = $"<br />{eventType.Guid}<p><font color=\"#84A2C6\" size=\"8\">{eventType.Name}</font></p>";
+        //    buttonItem.Command = commandSelectedItem;
+        //    buttonItem.CommandParameter = eventType;
+        //    itemPanelEvents.Items.Add(buttonItem);
+        //    itemPanelEvents.Refresh();
+        //}
 
         ///// <summary>
         /////
@@ -217,6 +242,16 @@ namespace WindowsFormsPubSub.ModalSelector
         {
             var test = (BindingSource)itemPanelEvents.DataSource;
             test.ResetCurrentItem();
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
+
+        public void SetSelectedEventyEntryByIndex(int index)
+        {
+            eventEntryBindingSource.Position = index;
         }
     }
 }

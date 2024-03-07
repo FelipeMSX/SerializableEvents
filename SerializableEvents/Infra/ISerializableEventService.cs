@@ -1,5 +1,5 @@
 ﻿using SerializableEvents.Core;
-using SerializableEvents.Presentation.ModalSelector;
+using SerializableEvents.Presentation.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +15,7 @@ namespace SerializableEvents.Infra
         void Save();
         void LoadData();
 
-        IEnumerable<KeyValuePair<Guid, IEventListener>> GetAll();
+        IEnumerable<KeyValuePair<Guid, IEventListener>> FindAll();
+        IEnumerable<KeyValuePair<Guid, IEventListener>> FindByType(Type type);
     }
 }

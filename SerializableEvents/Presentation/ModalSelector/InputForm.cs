@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SerializableEvents.Presentation.ModalSelector
+namespace SerializableEvents.Presentation.Model
 {
     public partial class InputForm : Form
     {

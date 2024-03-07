@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.voidEventListener1 = new SerializableEvents.Components.VoidEventListener();
+            this.stringEventListener1 = new SerializableEvents.Components.StringEventListener();
             this.SuspendLayout();
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.voidEventListener1.Unsubscribe);
-            this.Shown += new System.EventHandler(this.voidEventListener1.Subscribe);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.stringEventListener1.Unsubscribe);
+            this.Shown += new System.EventHandler(this.stringEventListener1.Subscribe);
             // 
             // MainForm
             // 
@@ -46,7 +46,7 @@
 
         #endregion
 
-        private SerializableEvents.Components.VoidEventListener voidEventListener1;
+        private SerializableEvents.Components.StringEventListener stringEventListener1;
     }
 }
 

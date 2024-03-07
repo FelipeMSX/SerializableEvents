@@ -121,7 +121,7 @@
   <data name="EventIcon_64" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAACuVJREFUeF7V232UVGUdB/BrhYrsvG5ImBihbW9AvmUWmVB2IpUKOp3MVI55eqMT
+        DgAACw4BQL7hQQAACuVJREFUeF7V232UVGUdB/BrhYrsvG5ImBihbW9AvmUWmVB2IpUKOp3MVI55eqMT
         UR2yl+M5vJjmy6nEjHd2l91WQ1gWRAghdpd9Q9LUNCV6geps5CF2Xu5Mu5Z0+35n9zf7zHOfmbkzc3fB
         Pz4H9pnn3rm/333u83LvHctxHJdZcxaOhmvg9/AnmDdUNuL0WF0FZNrQRxfCI+BodsB0MG3jGz1WVwGZ
         NvTBmbAMJOA43AkJpYx+DEEw7aNieqyuAjJtWKGboRckyHUQAH7G1nAJ1IN8fgK+Cvp+KqbH6iog04Zl
@@ -218,6 +218,6 @@
 </value>
   </data>
   <data name="FileName" xml:space="preserve">
-    <value>..\SerializableEventResources.resx</value>
+    <value>C:\Workspace\erp-contabilis\Contabilis\Contabilis\Properties\SerializableEventResources.resx</value>
   </data>
 </root>

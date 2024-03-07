@@ -1,6 +1,7 @@
 ﻿using SerializableEvents.Components;
 using SerializableEvents.Core;
 using SerializableEvents.Model;
+using SerializableEvents.Presentation.Model;
 using System;
 using System.ComponentModel;
 using System.Drawing.Design;
@@ -32,11 +33,11 @@ namespace SerializableEvents.Presentation
 
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    IEventListener eventlistner = form.ObterEventListener();
+                    EventEntry eventEntry = form.SelectedEventyEntry;
                     SerializableEvent eventComponent = new SerializableEvent
                     {
-                        Guid = eventlistner.Guid,
-                        Name = eventlistner.Name
+                        Guid = eventEntry.Guid,
+                        Name = eventEntry.Name
                     };
 
 

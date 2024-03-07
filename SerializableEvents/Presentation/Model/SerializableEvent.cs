@@ -2,7 +2,6 @@
 using SerializableEvents.Infra;
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 
 namespace SerializableEvents.Model
 {
@@ -17,12 +16,15 @@ namespace SerializableEvents.Model
 
         public event Action<IGenericEventArgs> OnEventTriggered;
 
+        [NonSerialized]
         private IEventListener _eventListener;
 
-        private ISerializableEventService _service = new SerializableEventService();
+        [NonSerialized]
+        private ISerializableEventService _service;
         //Handle exceptions
         public void Initialize()
         {
+            _service = new SerializableEventService();
             _eventListener = _service.FindListender(Guid);
         }
 

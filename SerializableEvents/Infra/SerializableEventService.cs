@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SerializableEvents.Infra
 {
@@ -10,28 +11,24 @@ namespace SerializableEvents.Infra
         //Não vou implementar dependency injection nesse projeto, vamos de Singleton mesmo;
         private IPersistence _persistenceService;
 
-        private Dictionary<Guid, IEventListener> _eventListeners;
-
-
         public SerializableEventService()
         {
             _persistenceService = PersistenceManager.Instance;
-            _eventListeners = _persistenceService.LoadData();
         }
 
         public IEventListener FindListender(Guid guid)
         {
-            return _eventListeners[guid];
+            return _persistenceService.EventListeners[guid];
         }
 
         public void AddEntry(Guid guid, IEventListener listener)
         {
-            _eventListeners.Add(guid, listener);
+            _persistenceService.EventListeners.Add(guid, listener);
         }
 
         public void RemoveEntry(Guid guid)
         {
-            _eventListeners.Remove(guid);
+            _persistenceService.EventListeners.Remove(guid);
         }
 
         public void UpdateEntry(Guid guid, IEventListener listener)
@@ -42,17 +39,27 @@ namespace SerializableEvents.Infra
 
         public void Save()
         {
-            _persistenceService.Save(_eventListeners);
+            _persistenceService.Save();
         }
 
         public void LoadData()
         {
-            _eventListeners = _persistenceService.LoadData();
+            _persistenceService.LoadData();
         }
 
-        public IEnumerable<KeyValuePair<Guid, IEventListener>> GetAll()
+        public IEnumerable<KeyValuePair<Guid, IEventListener>> FindAll()
         {
-            foreach (var listener in _eventListeners)
+            foreach (var listener in _persistenceService.EventListeners)
+            {
+                yield return listener;
+            }
+        }
+
+        public IEnumerable<KeyValuePair<Guid, IEventListener>> FindByType(Type type)
+        {
+
+            IEnumerable<KeyValuePair<Guid, IEventListener>> typeList = _persistenceService.EventListeners.Where(x => x.Value.GetType() == type);
+            foreach (var listener in typeList)
             {
                 yield return listener;
             }

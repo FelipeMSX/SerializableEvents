@@ -1,4 +1,4 @@
-﻿namespace SerializableEvents.Presentation.ModalSelector
+﻿namespace SerializableEvents.Presentation.Model
 {
     partial class InputForm
     {

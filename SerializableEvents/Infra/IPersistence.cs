@@ -6,7 +6,8 @@ namespace SerializableEvents.Infra
 {
     public interface IPersistence
     {
-        void Save(Dictionary<Guid, IEventListener> eventlisteners);
-        Dictionary<Guid, IEventListener> LoadData();
+        Dictionary<Guid, IEventListener> EventListeners { get; }
+        void Save();
+        void LoadData();
     }
 }
