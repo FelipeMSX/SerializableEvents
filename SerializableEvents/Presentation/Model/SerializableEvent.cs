@@ -3,14 +3,16 @@ using SerializableEvents.Infra;
 using System;
 using System.ComponentModel;
 
-namespace SerializableEvents.Model
+namespace SerializableEvents.Presentation.Model
 {
     [Serializable]
     public class SerializableEvent : IObserver
     {
+        [DisplayName("ID")]
         [ReadOnly(true)]
         public Guid Guid { get; set; }
-        
+
+        [DisplayName("Nome")]
         [ReadOnly(true)]
         public string Name { get; set; }
 
@@ -50,7 +52,7 @@ namespace SerializableEvents.Model
 
         public override string ToString()
         {
-            return Name;
+            return $"{Guid} - {Name}";
         }
     }
 }

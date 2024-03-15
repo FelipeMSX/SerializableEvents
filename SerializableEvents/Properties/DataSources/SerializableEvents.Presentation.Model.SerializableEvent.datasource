@@ -5,6 +5,6 @@
     Renaming the file extension or editing the content of this file may   
     cause the file to be unrecognizable by the program.
 -->
-<GenericObjectDataSource DisplayName="EventEntry" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>SerializableEvents.Presentation.Model.EventEntry, SerializableEvents, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+<GenericObjectDataSource DisplayName="SerializableEvent" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>SerializableEvents.Presentation.Model.SerializableEvent, SerializableEvents, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0d01c6e66c8c4195</TypeInfo>
 </GenericObjectDataSource>

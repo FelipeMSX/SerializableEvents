@@ -1,4 +1,6 @@
-﻿namespace SerializableEvents.Presentation
+﻿using System.Windows.Forms;
+
+namespace SerializableEvents.Presentation
 {
     internal abstract class Presenter<TView> where TView : IView
     {
@@ -16,5 +18,17 @@
             View = view;
             Model = model;
         }
+
+        public void Show()
+        {
+            View.Show();
+        }
+
+        //Encapsular o Dialog em um objeto próprio
+        public DialogResult ShowDialog()
+        {
+            return View.ShowDialog();
+        }
+
     }
 }

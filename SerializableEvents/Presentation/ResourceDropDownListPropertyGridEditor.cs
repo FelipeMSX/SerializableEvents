@@ -10,7 +10,7 @@ using WindowsFormsPubSub.ModalSelector;
 
 namespace SerializableEvents.Presentation
 {
-    class ResourceDropDownListPropertyEditor : UITypeEditor
+    class ResourceDropDownListPropertyGridEditor : UITypeEditor
     {
         IWindowsFormsEditorService _service;
 
@@ -28,7 +28,7 @@ namespace SerializableEvents.Presentation
                 _service = ((IWindowsFormsEditorService)provider.GetService(typeof(IWindowsFormsEditorService)));
 
                 EventListenerBase eventlistener = context.Instance as EventListenerBase;
-                IEventSelectorView form = new EventSelectorForm();
+                IEventSelectorView form = new EventSelectorFormWithGrid();
                 var presenter = new EventSelectorPresenter(form, eventlistener.EventType, eventlistener.SerializableEvent);
 
                 if (presenter.ShowDialog() == DialogResult.OK)

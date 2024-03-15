@@ -1,13 +1,15 @@
 ﻿using DevComponents.DotNetBar;
+using SerializableEvents.Core;
 using SerializableEvents.Presentation.Model;
 using System;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace WindowsFormsPubSub.ModalSelector
 {
-    public partial class EventSelectorForm : Office2007Form, IEventSelectorView
+    public partial class EventSelectorFormWithGrid : Office2007Form, IEventSelectorView
     {
 
         public SerializableEvent SelectedItem
@@ -45,9 +47,10 @@ namespace WindowsFormsPubSub.ModalSelector
         public event EventHandler SaveEvent;
         public event EventHandler SelectedItemChangedEvent;
 
+
         private BindingSource _eventBindingSource;
 
-        public EventSelectorForm()
+        public EventSelectorFormWithGrid()
         {
             InitializeComponent();
             lblEventId.Text = string.Empty;
@@ -61,10 +64,16 @@ namespace WindowsFormsPubSub.ModalSelector
             _eventBindingSource.CurrentItemChanged += (e, s) =>
             {
                 RefreshLabels((SerializableEvent)_eventBindingSource.Current);
+                SelectedItemChangedEvent?.Invoke(this, EventArgs.Empty);
             };
+            dataGridEvents.DataSource = _eventBindingSource;
 
-            cbbEvents.DataSource = _eventBindingSource;
-            cbbEvents.SelectedIndex = -1;
+            dataGridEvents.ClearSelection();
+        }
+
+        public void CloseView(DialogResult dialogResult)
+        {
+            DialogResult = dialogResult;
         }
 
         private void btnCreateNew_Click(object sender, EventArgs e)
@@ -90,16 +99,6 @@ namespace WindowsFormsPubSub.ModalSelector
         private void warninBox_CloseClick(object sender, EventArgs e)
         {
             ErrorMessage = string.Empty;
-        }
-
-        public void CloseView(DialogResult dialogResult)
-        {
-            DialogResult = dialogResult;
-        }
-
-        private void cbbEvents_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SelectedItemChangedEvent?.Invoke(this, EventArgs.Empty);
         }
 
         private void RefreshLabels(SerializableEvent serializableEvent)

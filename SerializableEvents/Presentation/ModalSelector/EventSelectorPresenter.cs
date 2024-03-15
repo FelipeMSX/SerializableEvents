@@ -4,69 +4,114 @@ using SerializableEvents.Infra;
 using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace SerializableEvents.Presentation.Model
 {
     internal class EventSelectorPresenter : Presenter<IEventSelectorView>
     {
-        private ISerializableEventService _serializableEventService;
+        private readonly ISerializableEventService _serializableEventService;
 
-        private BindingList<EventEntry> _listeners = new BindingList<EventEntry>();
+        private readonly BindingList<SerializableEvent> _listeners = new BindingList<SerializableEvent>();
 
-        private EventListenerBase _eventListenerBase;
+        private readonly Type _eventType;
 
+        private readonly SerializableEvent _serializableEvent;
 
-        public EventSelectorPresenter(IEventSelectorView view, EventListenerBase eventListenerBase) : base(view)
+        public EventSelectorPresenter(IEventSelectorView view, Type eventType, SerializableEvent serializableEvent) : base(view)
         {
             _serializableEventService = new SerializableEventService();
-            _eventListenerBase = eventListenerBase;
-
-            view.EventName = _eventListenerBase.EventType.Name;
-            view.AddNewEvent += OnAddNewEvent;
-            view.SaveEvent += OnSaveEvent;
+            _serializableEvent = serializableEvent;
+            _eventType = eventType;
+            View.CanSave = false;
 
             Initialize();
+
+            view.AddNewEvent += OnAddNewEvent;
+            view.SaveEvent += OnSaveEvent;
+            view.RemoveEvent += OnRemoveEvent;
+            view.SelectedItemChangedEvent += OnSelectedItemChangedEvent;
+            view.ErrorMessage = string.Empty;
+        }
+
+        private void OnSelectedItemChangedEvent(object sender, EventArgs e)
+        {
+            View.CanSave = View.SelectedItem != null;
+        }
+
+        private void OnRemoveEvent(object sender, EventArgs e)
+        {
+            if (View.SelectedItem == null)
+            {
+                View.ErrorMessage = "Defina um item antes de selecionar essa ação";
+                return;
+            }
+
+            DialogResult result = MessageBox.Show($"Deseja realmente remover o evento{View.SelectedItem.Name}", "Confirmar exclusão", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            var itemParaRemover = View.SelectedItem;
+            if (result == DialogResult.OK)
+            {
+                _listeners.Remove(itemParaRemover);
+                _serializableEventService.RemoveEntry(itemParaRemover.Guid);
+            }
+
+            View.CanSave = false;
         }
 
         private void OnSaveEvent(object sender, EventArgs e)
         {
+            if (View.SelectedItem == null)
+            {
+                View.ErrorMessage = "Só é possível salvar com um item selecionado";
+                return;
+            }
+
             _serializableEventService.Save();
+            View.CloseView(DialogResult.OK);
         }
 
-        private void OnAddNewEvent(object sender, System.EventArgs e)
+        private void OnAddNewEvent(object sender, NewSerializableEventArgs e)
         {
-            InputForm inputForm = new InputForm();
-
-            if (inputForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                IEventListener genericListener = (IEventListener)Activator.CreateInstance(_eventListenerBase.EventType);
-                genericListener.Name = inputForm.ObterNomeDoEvento();
-                _serializableEventService.AddEntry(genericListener.Guid, genericListener);
-
-                EventEntry entry = new EventEntry(genericListener.Guid, genericListener.Name);
-                _listeners.Add(entry);
-          
-            }
+            IEventListener genericListener = (IEventListener)Activator.CreateInstance(_eventType);
+            genericListener.Name = e.NewEventName;
+            _serializableEventService.AddEntry(genericListener.Guid, genericListener);
+            SerializableEvent serialzalbeEvent = CreteSerializableEventFromListener(genericListener.Guid, genericListener.Name);
+            _listeners.Add(serialzalbeEvent);
+            SetSelectedEvent(serialzalbeEvent);
         }
 
         private void Initialize()
         {
-            foreach (var item in _serializableEventService.FindByType(_eventListenerBase.EventType))
+            foreach (var item in _serializableEventService.FindByType(_eventType))
             {
-                EventEntry entry = new EventEntry(item.Value.Guid, item.Value.Name);
-                _listeners.Add(entry);
+                _listeners.Add(CreteSerializableEventFromListener(item.Value.Guid, item.Value.Name));
             }
 
             View.SetSerializableEventDataSource(_listeners);
-
-            if (_eventListenerBase.SerializableEvent != null)
+            //Abrindo com dados
+            if (_serializableEvent != null)
             {
-                EventEntry entry = new EventEntry(_eventListenerBase.SerializableEvent.Guid, _eventListenerBase.SerializableEvent.Name);
+                SerializableEvent eventEntry = CreteSerializableEventFromListener(_serializableEvent.Guid, _serializableEvent.Name);
                 //Notificar event aqui
-                EventEntry entryMatch = _listeners.FirstOrDefault(x => x.Guid == entry.Guid);
-                View.SetSelectedEventyEntryByIndex(_listeners.IndexOf(entryMatch));
+                SetSelectedEvent(eventEntry);
             }
+        }
 
+        private void SetSelectedEvent(SerializableEvent serializableEvent)
+        {
+            SerializableEvent entryMatch = _listeners.FirstOrDefault(x => x.Guid == serializableEvent.Guid);
+            View.SelectedItem = entryMatch;
+            View.CanSave = true;
+        }
+
+        private SerializableEvent CreteSerializableEventFromListener(Guid guid, string name)
+        {
+            return new SerializableEvent()
+            {
+                Guid = guid,
+                Name = name,
+            };
         }
     }
 }
