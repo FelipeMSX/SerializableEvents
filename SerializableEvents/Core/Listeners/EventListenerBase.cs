@@ -3,13 +3,17 @@ using System.Collections.Generic;
 
 namespace SerializableEvents.Core.Listeners
 {
-    [Serializable]
     public abstract class EventListenerBase<TType, TArgs> :
         IEventListener<TArgs> where TArgs : IGenericEventArgs<TType>
     {
-        public Guid Guid { get; } = Guid.NewGuid();
+        public Guid Guid { get; }
 
         public string Name { get; set; }
+
+        protected EventListenerBase(Guid guid)
+        {
+            Guid = guid;
+        }
 
         [NonSerialized]
         private List<IObserver> _listeners;

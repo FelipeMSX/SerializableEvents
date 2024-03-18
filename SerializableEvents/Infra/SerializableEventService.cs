@@ -23,7 +23,7 @@ namespace SerializableEvents.Infra
 
         public void AddEntry(Guid guid, IEventListener listener)
         {
-            _persistenceService.EventListeners.Add(guid, listener);
+            _persistenceService.EventListeners.Add(guid, listener );
         }
 
         public void RemoveEntry(Guid guid)

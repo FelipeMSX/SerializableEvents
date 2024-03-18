@@ -23,6 +23,7 @@ namespace SerializableEvents.Presentation.Model
 
         [NonSerialized]
         private ISerializableEventService _service;
+
         //Handle exceptions
         public void Initialize()
         {

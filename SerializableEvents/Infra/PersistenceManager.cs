@@ -1,4 +1,5 @@
-﻿using SerializableEvents.Core;
+﻿using Newtonsoft.Json;
+using SerializableEvents.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,17 +25,22 @@ namespace SerializableEvents.Infra
                 }
                 return _instance;
             }
-            set { _instance = value; }
         }
 
         private string _filePath;
 
         private bool _isLoaded;
 
-
         public Dictionary<Guid, IEventListener> EventListeners { get; private set; }
 
-        protected PersistenceManager() { }
+
+        //Não vou usar injeção de dependência
+        private SerializableEventsCacheService _cacheService;
+
+        protected PersistenceManager()
+        {
+            _cacheService = SerializableEventsCacheService.Instance;
+        }
 
         public void Save()
         {
@@ -42,7 +48,15 @@ namespace SerializableEvents.Infra
             {
                 foreach (var item in EventListeners)
                 {
-                    resourceWriter.AddResource(item.Key.ToString(), item.Value);
+                    var itemToSave = new SaveEventData()
+                    {
+                        Id = item.Value.Guid,
+                        Name = item.Value.Name,
+                        ListenerTypeName = item.Value.GetType().ToString(),
+                    };
+
+                    string serializedValue = JsonConvert.SerializeObject(itemToSave, Formatting.Indented);
+                    resourceWriter.AddResource(item.Key.ToString(), serializedValue);
                 }
                 resourceWriter.Generate();
             }
@@ -66,7 +80,14 @@ namespace SerializableEvents.Infra
                 {
                     try
                     {
-                        EventListeners.Add(new Guid(entry.Key.ToString()), (IEventListener)entry.Value);
+                        SaveEventData serializedValue = JsonConvert.DeserializeObject<SaveEventData>(entry.Value.ToString());
+                        SerializableEventCacheEntry cacheEntry = _cacheService.Find(serializedValue.ListenerTypeName);
+                        //IGenericEventArgs<TType> args = (TArgs)Activator.CreateInstance(typeof(TArgs), item);
+
+                        IEventListener listener = (IEventListener)Activator.CreateInstance(cacheEntry.EventType, serializedValue.Id);
+                        listener.Name = serializedValue.Name;
+                        //ObjectListener objectListener = new ObjectListener(serializedValue.Id) { Name = serializedValue.Name };
+                        EventListeners.Add(new Guid(entry.Key.ToString()), listener);
                     }
                     catch (Exception ex)
                     {
@@ -77,7 +98,6 @@ namespace SerializableEvents.Infra
             }
             _isLoaded = true;
         }
-
 
 
         private void BuildPath()
@@ -93,6 +113,14 @@ namespace SerializableEvents.Infra
                 {
                 }
             }
+        }
+
+        [Serializable]
+        public class SaveEventData
+        {
+            public Guid Id { get; set; }
+            public string ListenerTypeName { get; set; }
+            public string Name { get; set; }
         }
     }
 }

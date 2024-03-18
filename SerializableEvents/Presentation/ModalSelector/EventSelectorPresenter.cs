@@ -73,7 +73,7 @@ namespace SerializableEvents.Presentation.Model
 
         private void OnAddNewEvent(object sender, NewSerializableEventArgs e)
         {
-            IEventListener genericListener = (IEventListener)Activator.CreateInstance(_eventType);
+            IEventListener genericListener = (IEventListener)Activator.CreateInstance(_eventType, Guid.NewGuid());
             genericListener.Name = e.NewEventName;
             _serializableEventService.AddEntry(genericListener.Guid, genericListener);
             SerializableEvent serialzalbeEvent = CreteSerializableEventFromListener(genericListener.Guid, genericListener.Name);

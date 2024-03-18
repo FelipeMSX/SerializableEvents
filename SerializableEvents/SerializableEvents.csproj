@@ -83,6 +83,8 @@
     <Compile Include="Core\Listeners\DataTableListener.cs" />
     <Compile Include="Infra\IPersistence.cs" />
     <Compile Include="Infra\ISerializableEventService.cs" />
+    <Compile Include="Infra\SerializableEventAttribute.cs" />
+    <Compile Include="Infra\SerializableEventsCacheService.cs" />
     <Compile Include="Infra\SerializableEventService.cs" />
     <Compile Include="Presentation\Components\DataRowEventListener.cs">
       <SubType>Component</SubType>
@@ -141,6 +143,7 @@
       <DependentUpon>EventSelectorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Infra\PersistenceManager.cs" />
+    <Compile Include="Presentation\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Presentation\ResourceDropDownListPropertyEditor.cs" />
     <Compile Include="Presentation\Model\SerializableEvent.cs" />
